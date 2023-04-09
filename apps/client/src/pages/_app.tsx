@@ -1,6 +1,7 @@
+import "$styles/global.scss";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import "$styles/global.scss";
+import { AppProvider } from "src/core/contexts/appProvider";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -9,8 +10,9 @@ function App({ Component, pageProps }: AppProps) {
         <title>App Name</title>
         <meta content="App description" name="description" />
       </Head>
-
-      <Component {...pageProps} />
+      <AppProvider>
+        <Component {...pageProps} />
+      </AppProvider>
     </>
   );
 }
