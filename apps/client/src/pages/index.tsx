@@ -1,12 +1,13 @@
 import { SearchBar } from "$modules/SearchBar";
+import { Container } from "@mui/material";
 import { getLyrics, getSong, searchSong } from "genius-lyrics-api";
 import { NextPage } from "next";
 
 const IndexPage: NextPage = () => {
   const options = {
     apiKey: process.env.NEXT_PUBLIC_CLIENT_ACCESS_TOKEN ?? "",
-    title: "Blinding Lights",
-    artist: "The Weeknd",
+    title: "inferno",
+    artist: "-",
     optimizeQuery: true,
     authHeader: true,
   };
@@ -18,9 +19,10 @@ const IndexPage: NextPage = () => {
     authHeader: true,
   };
   const fetchAPI = async () => {
-    const a = await getLyrics(
-      "https://genius.com/Mrs-green-apple-inferno-lyrics"
-    );
+    // const a = await getLyrics(
+    //   "https://genius.com/Mrs-green-apple-inferno-lyrics"
+    // );
+    const a = await getSong(options);
     // const a = await getLyrics(options_b);
     console.log(a);
 
@@ -59,8 +61,10 @@ const IndexPage: NextPage = () => {
   // getTestLyrics();
   return (
     <div className="h-full w-full bg-red-100">
-      <h1>Index Pag</h1>
-      <SearchBar />
+      <Container maxWidth="xl">
+        <h1>Index Pag</h1>
+        <SearchBar />
+      </Container>
     </div>
   );
 };

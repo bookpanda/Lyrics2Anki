@@ -7,7 +7,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>App Name</title>
+        <title>Lyrics2Anki</title>
         <meta content="App description" name="description" />
       </Head>
       <AppProvider>
