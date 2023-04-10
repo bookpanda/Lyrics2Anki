@@ -2,7 +2,11 @@ import { FC, PropsWithChildren, useState } from "react";
 
 import { fetchGeniusLyrics, fetchGeniusSearch } from "../apis/geniusApi";
 import { fetchRapidLyrics, fetchRapidSearch } from "../apis/rapidApi";
-import { cleanLyrics, fetchTokenizedWords } from "../apis/tokenizer";
+import {
+  addFurigana,
+  cleanLyrics,
+  fetchTokenizedWords,
+} from "../apis/tokenizer";
 import { AppContext, lyricsType, songsType, tokenTypes } from "./appContext";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -64,8 +68,9 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const getAnkiCards = async () => {
     const cleanedLyrics = await cleanLyrics(lyrics?.lyrics ?? []);
-    const tokens = await fetchTokenizedWords(cleanedLyrics);
+    const tokens: string[] = await fetchTokenizedWords(cleanedLyrics);
     console.log(tokens);
+    await addFurigana(tokens);
   };
 
   return (

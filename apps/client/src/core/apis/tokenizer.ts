@@ -1,3 +1,8 @@
+import Kuroshiro from "kuroshiro";
+import KuromojiAnalyzer from "kuroshiro-analyzer-kuromoji";
+
+const kuroshiro = new Kuroshiro();
+
 export const cleanLyrics = (input: string[]) => {
   const jpLyrics: string[] = [];
   input.map((line) => {
@@ -11,13 +16,10 @@ export const cleanLyrics = (input: string[]) => {
       jpLyrics.push(stripped);
     }
   });
-  console.log(jpLyrics);
-
   return jpLyrics;
 };
 
 export const fetchTokenizedWords = async (cleanedLyrics: string[]) => {
-  console.log();
   const url = `http://127.0.0.1:5000`;
   const options = {
     method: "POST",
@@ -27,5 +29,16 @@ export const fetchTokenizedWords = async (cleanedLyrics: string[]) => {
   const data = await fetch(url, options)
     .then((res) => res.json())
     .catch((err) => console.error("error:" + err));
-  return data;
+  return data.content;
+};
+
+export const addFurigana = async (tokens: string[]) => {
+  await kuroshiro.init(new KuromojiAnalyzer());
+  tokens.map(async (tk) => {
+    const result = await kuroshiro.convert(tk, {
+      mode: "furigana",
+      to: "hiragana",
+    });
+    console.log(result);
+  });
 };
