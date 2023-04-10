@@ -17,13 +17,22 @@ export const SearchBar = () => {
         placeholder="Type in here…"
         onChange={(e) => setSearchArtist(e.target.value)}
       />
-      <Button
-        variant="outlined"
-        onClick={() => getSongs()}
-        sx={{ marginTop: 2 }}
-      >
-        Search
-      </Button>
+      <div className="flex space-x-4">
+        <Button
+          variant="outlined"
+          onClick={() => getSongs()}
+          sx={{ marginTop: 2 }}
+        >
+          Search
+        </Button>
+        <Button
+          variant="outlined"
+          // onClick={() => getAnkiCards()}
+          sx={{ marginTop: 2 }}
+        >
+          Get AnkiCards
+        </Button>
+      </div>
     </div>
   );
 };

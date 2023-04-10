@@ -1,4 +1,4 @@
-export type RapidDataType = {
+export type RapidSearchType = {
   query: string;
   tracks: {
     items: {
@@ -23,6 +23,8 @@ export type RapidDataType = {
   };
 };
 
+export type RapidLyricsType = { lyrics: { lines: { words: string }[] } };
+
 export const fetchRapidSearch = async (title: string, artist: string) => {
   if (!title && !artist) return null;
   if (!title) title = "-";
@@ -35,7 +37,24 @@ export const fetchRapidSearch = async (title: string, artist: string) => {
       "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
     },
   };
-  const data: RapidDataType = await fetch(url, options)
+  const data: RapidSearchType = await fetch(url, options)
+    .then((res) => res.json())
+    .catch((err) => console.error("error:" + err));
+  return data;
+};
+
+export const fetchRapidLyrics = async (id: string) => {
+  if (!id) return null;
+  const url = `https://spotify23.p.rapidapi.com/track_lyrics/?id=${id}`;
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_APP_KEY ?? "",
+      "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
+    },
+  };
+
+  const data: RapidLyricsType = await fetch(url, options)
     .then((res) => res.json())
     .catch((err) => console.error("error:" + err));
   return data;

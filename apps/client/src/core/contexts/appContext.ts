@@ -9,22 +9,28 @@ export type songsType =
     }[]
   | null;
 
+export type lyricsType = { lyrics: string[]; url: string } | null;
+
 interface IAppContext {
-  getSongs: () => void;
   searchTrack: string;
   setSearchTrack: (s: string) => void;
   searchArtist: string;
   setSearchArtist: (s: string) => void;
   songs: songsType;
+  getSongs: () => void;
+  lyrics: lyricsType;
+  getLyrics: (url: string, src: string) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
-  getSongs: () => null,
   searchArtist: "",
   setSearchTrack: () => null,
   searchTrack: "",
   setSearchArtist: () => null,
   songs: null,
+  getSongs: () => null,
+  lyrics: null,
+  getLyrics: () => null,
 });
 
 export const useAppContext = () => {

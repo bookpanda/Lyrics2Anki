@@ -1,22 +1,18 @@
-import { FC, PropsWithChildren, useEffect, useState } from "react";
+import { FC, PropsWithChildren, useState } from "react";
 
-import { fetchGeniusSearch, fetchGeniusSong } from "../apis/geniusApi";
-import { fetchRapidSearch } from "../apis/rapidApi";
-import { AppContext, songsType } from "./appContext";
+import { fetchGeniusLyrics, fetchGeniusSearch } from "../apis/geniusApi";
+import { fetchRapidLyrics, fetchRapidSearch } from "../apis/rapidApi";
+import { AppContext, lyricsType, songsType } from "./appContext";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [searchTrack, setSearchTrack] = useState("");
   const [searchArtist, setSearchArtist] = useState("");
   const [songs, setSongs] = useState<songsType>(null);
+  const [lyrics, setLyrics] = useState<lyricsType>(null);
 
   const getSongs = async () => {
-    // const data = await fetchGeniusSong(searchTrack, searchArtist);
     const dataGenius = await fetchGeniusSearch(searchTrack, searchArtist);
     const dataRapid = await fetchRapidSearch(searchTrack, searchArtist);
-
-    console.log(dataGenius);
-    console.log(dataRapid);
-
     const newSongs: songsType = [];
     if (dataGenius) {
       dataGenius.map((s) => {
@@ -41,15 +37,40 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     setSongs(() => newSongs);
   };
 
+  const getLyrics = async (url: string, src: string) => {
+    if (src === "genius") {
+      const data = await fetchGeniusLyrics(url);
+      const lyrics = data?.split(/\r?\n/);
+      setLyrics({ lyrics: lyrics ?? [], url });
+    } else if (src === "rapid") {
+      let data = await fetchRapidLyrics(url);
+      if (!data) data = { lyrics: { lines: [{ words: "No lyrics" }] } };
+      if (data.lyrics) {
+        const lyrics = data?.lyrics.lines.map((a) => a.words);
+        setLyrics({
+          lyrics: lyrics,
+          url,
+        });
+      } else {
+        setLyrics({
+          lyrics: ["No lyrics"],
+          url,
+        });
+      }
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
-        getSongs,
         searchArtist,
         setSearchTrack,
         searchTrack,
         setSearchArtist,
         songs,
+        getSongs,
+        lyrics,
+        getLyrics,
       }}
     >
       {children}
