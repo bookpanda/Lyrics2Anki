@@ -2,13 +2,15 @@ import { FC, PropsWithChildren, useState } from "react";
 
 import { fetchGeniusLyrics, fetchGeniusSearch } from "../apis/geniusApi";
 import { fetchRapidLyrics, fetchRapidSearch } from "../apis/rapidApi";
-import { AppContext, lyricsType, songsType } from "./appContext";
+import { fetchTokenizedWords } from "../apis/tokenizer";
+import { AppContext, lyricsType, songsType, tokenTypes } from "./appContext";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [searchTrack, setSearchTrack] = useState("");
   const [searchArtist, setSearchArtist] = useState("");
   const [songs, setSongs] = useState<songsType>(null);
   const [lyrics, setLyrics] = useState<lyricsType>(null);
+  const [tokens, setTokens] = useState<tokenTypes>(null);
 
   const getSongs = async () => {
     const dataGenius = await fetchGeniusSearch(searchTrack, searchArtist);
@@ -60,6 +62,14 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   };
 
+  const tokenize = async () => {
+    const data = await fetchTokenizedWords(lyrics?.lyrics ?? []);
+  };
+
+  const getAnkiCards = () => {
+    tokenize();
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -71,6 +81,8 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         getSongs,
         lyrics,
         getLyrics,
+        tokens,
+        getAnkiCards,
       }}
     >
       {children}

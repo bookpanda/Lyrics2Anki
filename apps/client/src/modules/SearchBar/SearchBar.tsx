@@ -4,7 +4,8 @@ import { Typography } from "@mui/material";
 import { useAppContext } from "src/core/contexts";
 
 export const SearchBar = () => {
-  const { getSongs, setSearchArtist, setSearchTrack } = useAppContext();
+  const { getAnkiCards, getSongs, setSearchArtist, setSearchTrack } =
+    useAppContext();
   return (
     <div>
       <Typography variant="h5">Search Track</Typography>
@@ -27,7 +28,7 @@ export const SearchBar = () => {
         </Button>
         <Button
           variant="outlined"
-          // onClick={() => getAnkiCards()}
+          onClick={() => getAnkiCards()}
           sx={{ marginTop: 2 }}
         >
           Get AnkiCards

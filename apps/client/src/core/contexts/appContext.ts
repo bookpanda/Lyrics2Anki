@@ -11,6 +11,8 @@ export type songsType =
 
 export type lyricsType = { lyrics: string[]; url: string } | null;
 
+export type tokenTypes = string[] | null;
+
 interface IAppContext {
   searchTrack: string;
   setSearchTrack: (s: string) => void;
@@ -20,6 +22,8 @@ interface IAppContext {
   getSongs: () => void;
   lyrics: lyricsType;
   getLyrics: (url: string, src: string) => void;
+  tokens: tokenTypes;
+  getAnkiCards: () => void;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -31,6 +35,8 @@ export const AppContext = createContext<IAppContext>({
   getSongs: () => null,
   lyrics: null,
   getLyrics: () => null,
+  tokens: null,
+  getAnkiCards: () => null,
 });
 
 export const useAppContext = () => {
