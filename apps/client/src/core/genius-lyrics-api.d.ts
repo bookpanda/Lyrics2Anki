@@ -18,7 +18,7 @@ declare module "genius-lyrics-api" {
     url: string; // Genius webpage URL for the song
     title: string; // Song title
     albumArt: string; // URL of the album art image (jpg/png)
-  };
+  }[];
 
   export function getLyrics(options: options | string): Promise<string> | null;
   export function getSong(options: options): Promise<song> | null;

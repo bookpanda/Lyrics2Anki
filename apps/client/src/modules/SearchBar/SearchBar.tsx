@@ -1,9 +1,10 @@
+import Button from "@mui/joy/Button";
 import Input from "@mui/joy/Input";
 import { Typography } from "@mui/material";
 import { useAppContext } from "src/core/contexts";
 
 export const SearchBar = () => {
-  const { setSearchArtist, setSearchTrack } = useAppContext();
+  const { getSongs, setSearchArtist, setSearchTrack } = useAppContext();
   return (
     <div>
       <Typography variant="h5">Search Track</Typography>
@@ -16,6 +17,13 @@ export const SearchBar = () => {
         placeholder="Type in here…"
         onChange={(e) => setSearchArtist(e.target.value)}
       />
+      <Button
+        variant="outlined"
+        onClick={() => getSongs()}
+        sx={{ marginTop: 2 }}
+      >
+        Search
+      </Button>
     </div>
   );
 };

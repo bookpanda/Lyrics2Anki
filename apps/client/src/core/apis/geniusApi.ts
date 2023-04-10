@@ -1,11 +1,11 @@
 import { getLyrics, getSong, searchSong } from "genius-lyrics-api";
 
-export const fetchSong = async (title: string, artist: string) => {
+export const fetchGeniusSong = async (title: string, artist: string) => {
   if (!title && !artist) return null;
   if (!title) title = "-";
   if (!artist) artist = "-";
   const options = {
-    apiKey: process.env.NEXT_PUBLIC_CLIENT_ACCESS_TOKEN ?? "",
+    apiKey: process.env.NEXT_PUBLIC_GENIUS_CLIENT_ACCESS_TOKEN ?? "",
     title,
     artist,
     optimizeQuery: true,
@@ -15,17 +15,17 @@ export const fetchSong = async (title: string, artist: string) => {
   return data;
 };
 
-export const fetchLyrics = async (url: string) => {
+export const fetchGeniusLyrics = async (url: string) => {
   const data = await getLyrics(url);
   return data;
 };
 
-export const fetchSearch = async (title: string, artist: string) => {
+export const fetchGeniusSearch = async (title: string, artist: string) => {
   if (!title && !artist) return null;
   if (!title) title = "-";
   if (!artist) artist = "-";
   const options = {
-    apiKey: process.env.NEXT_PUBLIC_CLIENT_ACCESS_TOKEN ?? "",
+    apiKey: process.env.NEXT_PUBLIC_GENIUS_CLIENT_ACCESS_TOKEN ?? "",
     title,
     artist,
     optimizeQuery: true,
