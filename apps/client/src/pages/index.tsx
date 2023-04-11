@@ -5,7 +5,7 @@ import { NextPage } from "next";
 import { useAppContext } from "src/core/contexts";
 
 const IndexPage: NextPage = () => {
-  const { songs, lyrics } = useAppContext();
+  const { furigana, lyrics, songs } = useAppContext();
   return (
     <div className="h-full w-full">
       <Container maxWidth="xl">
@@ -26,6 +26,13 @@ const IndexPage: NextPage = () => {
           {lyrics && (
             <div className="w-1/2">
               <LyricsCard lyrics={lyrics.lyrics} />
+            </div>
+          )}
+          {furigana && (
+            <div className="w-1/2">
+              {furigana.map((f, idx) => (
+                <p key={idx}>{f}</p>
+              ))}
             </div>
           )}
         </div>

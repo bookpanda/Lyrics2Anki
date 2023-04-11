@@ -6,6 +6,7 @@ import {
   addFurigana,
   cleanLyrics,
   fetchTokenizedWords,
+  furiganaType,
 } from "../apis/tokenizer";
 import { AppContext, lyricsType, songsType, tokenTypes } from "./appContext";
 
@@ -15,6 +16,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [songs, setSongs] = useState<songsType>(null);
   const [lyrics, setLyrics] = useState<lyricsType>(null);
   const [tokens, setTokens] = useState<tokenTypes>(null);
+  const [furigana, setFurigana] = useState<furiganaType>(null);
 
   const getSongs = async () => {
     const dataGenius = await fetchGeniusSearch(searchTrack, searchArtist);
@@ -70,7 +72,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     const cleanedLyrics = await cleanLyrics(lyrics?.lyrics ?? []);
     const tokens: string[] = await fetchTokenizedWords(cleanedLyrics);
     console.log(tokens);
-    await addFurigana(tokens);
+    setFurigana(await addFurigana(tokens));
   };
 
   return (
@@ -86,6 +88,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         getLyrics,
         tokens,
         getAnkiCards,
+        furigana,
       }}
     >
       {children}

@@ -1,5 +1,7 @@
 import { createContext, useContext } from "react";
 
+import { furiganaType } from "../apis/tokenizer";
+
 export type songsType =
   | {
       albumArt: string;
@@ -24,6 +26,7 @@ interface IAppContext {
   getLyrics: (url: string, src: string) => void;
   tokens: tokenTypes;
   getAnkiCards: () => void;
+  furigana: furiganaType;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -37,6 +40,7 @@ export const AppContext = createContext<IAppContext>({
   getLyrics: () => null,
   tokens: null,
   getAnkiCards: () => null,
+  furigana: null,
 });
 
 export const useAppContext = () => {

@@ -57,6 +57,7 @@ importers:
       autoprefixer: ^10.4.13
       eslint: 7.32.0
       genius-lyrics-api: ^3.2.0
+      kuromoji: ^0.1.2
       kuroshiro: ^1.2.0
       kuroshiro-analyzer-kuromoji: ^1.1.0
       next: ^13.1.1
@@ -74,6 +75,7 @@ importers:
       '@mui/joy': 5.0.0-alpha.74_xqeqsl5kvjjtyxwyi3jhw3yuli
       '@mui/material': 5.11.16_xqeqsl5kvjjtyxwyi3jhw3yuli
       genius-lyrics-api: 3.2.0
+      kuromoji: 0.1.2
       kuroshiro: 1.2.0
       kuroshiro-analyzer-kuromoji: 1.1.0
       next: 13.2.3_4pgn6omj4irpgog4tpnzary34q

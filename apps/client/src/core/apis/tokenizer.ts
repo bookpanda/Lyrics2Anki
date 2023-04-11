@@ -2,6 +2,14 @@ import Kuroshiro from "kuroshiro";
 import KuromojiAnalyzer from "kuroshiro-analyzer-kuromoji";
 
 const kuroshiro = new Kuroshiro();
+const init = async () => {
+  await kuroshiro.init(
+    new KuromojiAnalyzer({
+      dictPath: "/static/dict",
+    })
+  );
+};
+init();
 
 export const cleanLyrics = (input: string[]) => {
   const jpLyrics: string[] = [];
@@ -32,13 +40,16 @@ export const fetchTokenizedWords = async (cleanedLyrics: string[]) => {
   return data.content;
 };
 
+export type furiganaType = string[] | null;
+
 export const addFurigana = async (tokens: string[]) => {
-  await kuroshiro.init(new KuromojiAnalyzer());
+  const furigana: furiganaType = [];
   tokens.map(async (tk) => {
     const result = await kuroshiro.convert(tk, {
-      mode: "furigana",
+      // mode: "furigana",
       to: "hiragana",
     });
-    console.log(result);
+    furigana.push(result);
   });
+  return furigana;
 };
