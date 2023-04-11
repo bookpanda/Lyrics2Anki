@@ -5,7 +5,7 @@ export const fetchGeniusSong = async (title: string, artist: string) => {
   if (!title) title = "-";
   if (!artist) artist = "-";
   const options = {
-    apiKey: process.env.NEXT_PUBLIC_GENIUS_CLIENT_ACCESS_TOKEN ?? "",
+    apiKey: process.env.NEXT_PUBLIC_GENIUS_CLIENT_ACCESS_TOKEN as string,
     title,
     artist,
     optimizeQuery: true,
@@ -25,7 +25,7 @@ export const fetchGeniusSearch = async (title: string, artist: string) => {
   if (!title) title = "-";
   if (!artist) artist = "-";
   const options = {
-    apiKey: process.env.NEXT_PUBLIC_GENIUS_CLIENT_ACCESS_TOKEN ?? "",
+    apiKey: process.env.NEXT_PUBLIC_GENIUS_CLIENT_ACCESS_TOKEN as string,
     title,
     artist,
     optimizeQuery: true,

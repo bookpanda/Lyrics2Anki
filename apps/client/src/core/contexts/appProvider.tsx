@@ -8,6 +8,7 @@ import {
   fetchTokenizedWords,
   furiganaType,
 } from "../apis/tokenizer";
+import { fetchTranslation } from "../apis/translateApi";
 import { AppContext, lyricsType, songsType, tokenTypes } from "./appContext";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -71,8 +72,10 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const getAnkiCards = async () => {
     const cleanedLyrics = await cleanLyrics(lyrics?.lyrics ?? []);
     const tokens: string[] = await fetchTokenizedWords(cleanedLyrics);
+    const fg = await addFurigana(tokens);
     console.log(tokens);
-    setFurigana(await addFurigana(tokens));
+    const meaning = await fetchTranslation(tokens);
+    setFurigana(fg);
   };
 
   return (

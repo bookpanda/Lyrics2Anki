@@ -1,7 +1,7 @@
 import "$styles/global.scss";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import Script from "next/script";
+// import Script from "next/script";
 import { AppProvider } from "src/core/contexts/appProvider";
 
 function App({ Component, pageProps }: AppProps) {

@@ -33,7 +33,7 @@ export const fetchRapidSearch = async (title: string, artist: string) => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_APP_KEY ?? "",
+      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_APP_KEY as string,
       "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
     },
   };
@@ -49,7 +49,7 @@ export const fetchRapidLyrics = async (id: string) => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_APP_KEY ?? "",
+      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_APP_KEY as string,
       "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
     },
   };
