@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useState } from "react";
 
 import { fetchAnkiCards } from "../apis/ankiApi";
-import { fetchGeniusLyrics, fetchGeniusSearch } from "../apis/geniusApi";
+// import { fetchGeniusLyrics, fetchGeniusSearch } from "../apis/geniusApi";
 import { fetchRapidLyrics, fetchRapidSearch } from "../apis/rapidApi";
 import {
   addFurigana,
@@ -24,19 +24,19 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [vocab, setVocab] = useState<VocabType>(null);
 
   const getSongs = async () => {
-    const dataGenius = await fetchGeniusSearch(searchTrack, searchArtist);
+    // const dataGenius = await fetchGeniusSearch(searchTrack, searchArtist);
     const dataRapid = await fetchRapidSearch(searchTrack, searchArtist);
     const newSongs: songsType = [];
-    if (dataGenius) {
-      dataGenius.map((s) => {
-        newSongs?.push({
-          albumArt: s.albumArt,
-          title: s.title,
-          url: s.url,
-          src: "genius",
-        });
-      });
-    }
+    // if (dataGenius) {
+    //   dataGenius.map((s) => {
+    //     newSongs?.push({
+    //       albumArt: s.albumArt,
+    //       title: s.title,
+    //       url: s.url,
+    //       src: "genius",
+    //     });
+    //   });
+    // }
     if (dataRapid) {
       dataRapid.tracks.items.map((s) => {
         newSongs?.push({
@@ -52,9 +52,9 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const selectSong = async (title: string, url: string, src: string) => {
     if (src === "genius") {
-      const data = await fetchGeniusLyrics(title, url);
-      const lyrics = data?.split(/\r?\n/);
-      setSelectedSong({ title, lyrics: lyrics ?? [], url });
+      // const data = await fetchGeniusLyrics(url);
+      // const lyrics = data?.split(/\r?\n/);
+      // setSelectedSong({ title, lyrics: lyrics ?? [], url });
     } else if (src === "rapid") {
       let data = await fetchRapidLyrics(url);
       if (!data) data = { lyrics: { lines: [{ words: "No lyrics" }] } };

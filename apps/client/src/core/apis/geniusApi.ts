@@ -1,4 +1,3 @@
-import axios from "axios";
 import { getLyrics, getSong, searchSong } from "genius-lyrics-api";
 
 export const fetchGeniusSong = async (title: string, artist: string) => {
@@ -16,26 +15,7 @@ export const fetchGeniusSong = async (title: string, artist: string) => {
   return data;
 };
 
-export const fetchGeniusLyrics = async (title: string, url: string) => {
-  // if (!title) return null;
-  // const options = {
-  //   apiKey: process.env.NEXT_PUBLIC_GENIUS_CLIENT_ACCESS_TOKEN as string,
-  //   title,
-  //   artist: "-",
-  //   optimizeQuery: false,
-  //   authHeader: false,
-  // };
-  // console.log(url);
-  // const a = `${url}&access_token=${
-  //   process.env.NEXT_PUBLIC_GENIUS_CLIENT_ACCESS_TOKEN as string
-  // }`;
-  // axios({
-  //   url: a,
-  //   method: "get",
-  //   headers: { "Access-Control-Allow-Origin": "*" },
-  // });
-
-  // const data = await getLyrics(options);
+export const fetchGeniusLyrics = async (url: string) => {
   const data = await getLyrics(url);
   return data;
 };
