@@ -33,26 +33,44 @@ def index():
 
 
 @app.route("/anki", methods=["POST"])
-def index():
-    vocab = request.json
-    # for v in vocab:
+def anki():
+    data = request.json
+    title = data["title"]
+    vocab = data["vocab"]
 
-    deckModel = genanki.Model(
+    lyricsModel = genanki.Model(
         1607392319,
-        "Simple Model",
+        title,
         fields=[
-            {"name": "Question"},
-            {"name": "Answer"},
+            {"name": "Expression"},
+            {"name": "Reading"},
+            {"name": "Meaning"},
         ],
         templates=[
             {
-                "name": "Card 1",
-                "qfmt": "{{Question}}",
-                "afmt": '{{FrontSide}}<hr id="answer">{{Answer}}',
+                "name": "Recognition",
+                "qfmt": "{{furigana:Reading}}",
+                "afmt": '{{FrontSide}}<hr id="answer">{{Meaning}}',
             },
         ],
     )
-    return 0
+    lyricsDeck = genanki.Deck(2059400110, title)
+    for v in vocab:
+        note = genanki.Note(
+            model=lyricsModel, fields=[v["token"], v["furigana"], v["translation"]]
+        )
+        print(v["token"], v["furigana"], v["translation"])
+        lyricsDeck.add_note(note)
+
+    genanki.Package(lyricsDeck).write_to_file("output.apkg")
+
+    data = {"content": "lol"}
+    json_dump = json.dumps(data)
+    res = Response(json_dump)
+    res.headers["Content-Type"] = "application/json"
+    res.headers["Access-Control-Allow-Origin"] = "*"
+    res.headers["Access-Control-Allow-Credentials"] = True
+    return res
 
 
 def run():
