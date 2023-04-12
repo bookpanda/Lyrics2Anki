@@ -6,18 +6,16 @@ import {
   addFurigana,
   cleanLyrics,
   fetchTokenizedWords,
-  furiganaType,
 } from "../apis/tokenizer";
 import { fetchTranslation } from "../apis/translateApi";
-import { AppContext, lyricsType, songsType, tokenTypes } from "./appContext";
+import { AppContext, VocabType, lyricsType, songsType } from "./appContext";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [searchTrack, setSearchTrack] = useState("");
   const [searchArtist, setSearchArtist] = useState("");
   const [songs, setSongs] = useState<songsType>(null);
   const [lyrics, setLyrics] = useState<lyricsType>(null);
-  const [tokens, setTokens] = useState<tokenTypes>(null);
-  const [furigana, setFurigana] = useState<furiganaType>(null);
+  const [vocab, setVocab] = useState<VocabType>(null);
 
   const getSongs = async () => {
     const dataGenius = await fetchGeniusSearch(searchTrack, searchArtist);
@@ -72,10 +70,24 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const getAnkiCards = async () => {
     const cleanedLyrics = await cleanLyrics(lyrics?.lyrics ?? []);
     const tokens: string[] = await fetchTokenizedWords(cleanedLyrics);
+    if (tokens.length === 0) tokens.push("なんでもない");
+
+    // console.log(`tokens:`);
+    // console.log(tokens);
+
     const fg = await addFurigana(tokens);
-    console.log(tokens);
+    // console.log(`fg: `);
+    // console.log(fg);
+
     const meaning = await fetchTranslation(tokens);
-    setFurigana(fg);
+    // console.log(`meaning: `);
+    // console.log(meaning);
+
+    setVocab(() =>
+      tokens.map((token, idx) => {
+        return { token, furigana: fg[idx], translation: meaning[idx] };
+      })
+    );
   };
 
   return (
@@ -89,9 +101,8 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         getSongs,
         lyrics,
         getLyrics,
-        tokens,
         getAnkiCards,
-        furigana,
+        vocab,
       }}
     >
       {children}
