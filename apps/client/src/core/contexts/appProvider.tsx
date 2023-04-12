@@ -24,6 +24,8 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [vocab, setVocab] = useState<VocabType>(null);
 
   const getSongs = async () => {
+    // setSelectedSong(null);
+    // setVocab(null);
     // const dataGenius = await fetchGeniusSearch(searchTrack, searchArtist);
     const dataRapid = await fetchRapidSearch(searchTrack, searchArtist);
     const newSongs: songsType = [];
@@ -39,10 +41,17 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     // }
     if (dataRapid) {
       dataRapid.tracks.items.map((s) => {
+        const artists = s.data.artists.items.map((a) => a.profile.name);
+        let seconds = Math.floor(s.data.duration.totalMilliseconds / 1000);
+        const minutes = Math.floor(seconds / 60);
+        seconds -= minutes * 60;
         newSongs?.push({
+          artists,
           albumArt: s.data.albumOfTrack.coverArt.sources[0].url,
+          album: s.data.albumOfTrack.name,
           title: s.data.name,
           url: s.data.id,
+          duration: { minutes, seconds },
           src: "rapid",
         });
       });
@@ -78,8 +87,10 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const getAnkiCards = async () => {
     const cleanedLyrics = await cleanLyrics(selectedSong?.lyrics ?? []);
     const tokens: string[] = await fetchTokenizedWords(cleanedLyrics);
-    if (tokens.length === 0) tokens.push("なんでもない");
-
+    if (tokens.length === 0) {
+      // some warning
+      return;
+    }
     console.log(`tokens:`);
     console.log(tokens);
 

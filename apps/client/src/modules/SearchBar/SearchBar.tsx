@@ -10,6 +10,7 @@ export const SearchBar = () => {
     <div>
       <Typography variant="h5">Search Track</Typography>
       <Input
+        variant="solid"
         placeholder="Type in here…"
         onChange={(e) => setSearchTrack(e.target.value)}
       />

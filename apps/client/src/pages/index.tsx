@@ -1,5 +1,6 @@
 import { SearchBar } from "$modules/SearchBar";
 import { LyricsCard, SongCard } from "$modules/SongCard";
+import { SpotifyEmbed } from "$modules/SpotifyEmbed";
 import { Container } from "@mui/material";
 import { NextPage } from "next";
 import { useAppContext } from "src/core/contexts";
@@ -9,7 +10,7 @@ const IndexPage: NextPage = () => {
   return (
     <div className="h-full w-full">
       <Container maxWidth="xl">
-        <h1>Index Pag</h1>
+        <SpotifyEmbed />
         <SearchBar />
         <div className="flex w-full space-x-4">
           <div className="mt-8 w-1/2">

@@ -3,16 +3,19 @@ export type RapidSearchType = {
   tracks: {
     items: {
       data: {
+        uri: string;
+        id: string;
+        name: string;
         albumOfTrack: {
+          uri: string;
+          name: string;
           coverArt: {
             sources: { height: number; width: number; url: string }[];
           };
-          uri: string;
         };
         artists: { items: { uri: string; profile: { name: string } }[] };
-        id: string;
-        name: string;
-        uri: string;
+        duration: { totalMilliseconds: number };
+        playability: { playable: boolean };
       };
     }[];
     pagingInfo: {
