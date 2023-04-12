@@ -52,12 +52,28 @@ def anki():
                 "qfmt": "{{furigana:Reading}}",
                 "afmt": '{{FrontSide}}<hr id="answer">{{Meaning}}',
             },
+            {
+                "name": "Recall",
+                "qfmt": "{{Meaning}}",
+                "afmt": '{{FrontSide}}<hr id="answer">{{furigana:Reading}}',
+            },
         ],
+        css=""".card {
+                font-family: helvetica;
+                font-size: 28px;
+                text-align: center;
+                color: black;
+                background-color: white;
+            }""",
     )
     lyricsDeck = genanki.Deck(2059400110, title)
     for v in vocab:
+        if v["furigana"] == "":
+            reading = v["token"]
+        else:
+            reading = f'{v["token"]}[{v["furigana"]}]'
         note = genanki.Note(
-            model=lyricsModel, fields=[v["token"], v["furigana"], v["translation"]]
+            model=lyricsModel, fields=[v["token"], reading, v["translation"]]
         )
         print(v["token"], v["furigana"], v["translation"])
         lyricsDeck.add_note(note)

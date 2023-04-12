@@ -49,7 +49,8 @@ export const addFurigana = async (tokens: string[]) => {
       // mode: "furigana",
       to: "hiragana",
     });
-    furigana.push(result);
+    if (result !== tk) furigana.push(result);
+    else furigana.push("");
   });
   return furigana;
 };
