@@ -2,6 +2,7 @@ from flask import Flask, request, Response
 from flask_cors import CORS, cross_origin
 from threading import Thread
 import json
+import genanki
 from fugashi import Tagger
 
 app = Flask(__name__)
@@ -29,6 +30,29 @@ def index():
     res.headers["Access-Control-Allow-Origin"] = "*"
     res.headers["Access-Control-Allow-Credentials"] = True
     return res
+
+
+@app.route("/anki", methods=["POST"])
+def index():
+    vocab = request.json
+    # for v in vocab:
+
+    deckModel = genanki.Model(
+        1607392319,
+        "Simple Model",
+        fields=[
+            {"name": "Question"},
+            {"name": "Answer"},
+        ],
+        templates=[
+            {
+                "name": "Card 1",
+                "qfmt": "{{Question}}",
+                "afmt": '{{FrontSide}}<hr id="answer">{{Answer}}',
+            },
+        ],
+    )
+    return 0
 
 
 def run():

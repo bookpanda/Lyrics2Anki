@@ -1,5 +1,6 @@
 import { FC, PropsWithChildren, useState } from "react";
 
+import { fetchAnkiCards } from "../apis/ankiApi";
 import { fetchGeniusLyrics, fetchGeniusSearch } from "../apis/geniusApi";
 import { fetchRapidLyrics, fetchRapidSearch } from "../apis/rapidApi";
 import {
@@ -8,13 +9,18 @@ import {
   fetchTokenizedWords,
 } from "../apis/tokenizer";
 import { fetchTranslation } from "../apis/translateApi";
-import { AppContext, VocabType, lyricsType, songsType } from "./appContext";
+import {
+  AppContext,
+  VocabType,
+  selectedSongType,
+  songsType,
+} from "./appContext";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [searchTrack, setSearchTrack] = useState("");
   const [searchArtist, setSearchArtist] = useState("");
   const [songs, setSongs] = useState<songsType>(null);
-  const [lyrics, setLyrics] = useState<lyricsType>(null);
+  const [selectedSong, setSelectedSong] = useState<selectedSongType>(null);
   const [vocab, setVocab] = useState<VocabType>(null);
 
   const getSongs = async () => {
@@ -44,22 +50,24 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     setSongs(() => newSongs);
   };
 
-  const getLyrics = async (url: string, src: string) => {
+  const selectSong = async (title: string, url: string, src: string) => {
     if (src === "genius") {
       const data = await fetchGeniusLyrics(url);
       const lyrics = data?.split(/\r?\n/);
-      setLyrics({ lyrics: lyrics ?? [], url });
+      setSelectedSong({ title, lyrics: lyrics ?? [], url });
     } else if (src === "rapid") {
       let data = await fetchRapidLyrics(url);
       if (!data) data = { lyrics: { lines: [{ words: "No lyrics" }] } };
       if (data.lyrics) {
         const lyrics = data?.lyrics.lines.map((a) => a.words);
-        setLyrics({
+        setSelectedSong({
+          title,
           lyrics: lyrics,
           url,
         });
       } else {
-        setLyrics({
+        setSelectedSong({
+          title,
           lyrics: ["No lyrics"],
           url,
         });
@@ -68,7 +76,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   };
 
   const getAnkiCards = async () => {
-    const cleanedLyrics = await cleanLyrics(lyrics?.lyrics ?? []);
+    const cleanedLyrics = await cleanLyrics(selectedSong?.lyrics ?? []);
     const tokens: string[] = await fetchTokenizedWords(cleanedLyrics);
     if (tokens.length === 0) tokens.push("なんでもない");
 
@@ -88,6 +96,8 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         return { token, furigana: fg[idx], translation: meaning[idx] };
       })
     );
+
+    await fetchAnkiCards(selectedSong?.title ?? "No name", vocab);
   };
 
   return (
@@ -99,8 +109,8 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         setSearchArtist,
         songs,
         getSongs,
-        lyrics,
-        getLyrics,
+        selectedSong,
+        selectSong,
         getAnkiCards,
         vocab,
       }}

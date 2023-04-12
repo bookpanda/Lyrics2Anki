@@ -5,7 +5,7 @@ import { NextPage } from "next";
 import { useAppContext } from "src/core/contexts";
 
 const IndexPage: NextPage = () => {
-  const { songs } = useAppContext();
+  const { selectedSong, songs, vocab } = useAppContext();
   return (
     <div className="h-full w-full">
       <Container maxWidth="xl">
@@ -23,6 +23,25 @@ const IndexPage: NextPage = () => {
               />
             ))}
           </div>
+          {selectedSong && (
+            <div className="w-1/2">
+              <LyricsCard
+                title={selectedSong.title}
+                lyrics={selectedSong.lyrics}
+              />
+            </div>
+          )}
+          {vocab && (
+            <div className="w-1/2">
+              {vocab.map((v, idx) => (
+                <div key={idx} className="flex space-x-2">
+                  <p>{v.token}</p>
+                  <p>{v.furigana}</p>
+                  <p>{v.translation}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </Container>
     </div>
