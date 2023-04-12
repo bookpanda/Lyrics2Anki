@@ -52,7 +52,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const selectSong = async (title: string, url: string, src: string) => {
     if (src === "genius") {
-      const data = await fetchGeniusLyrics(url);
+      const data = await fetchGeniusLyrics(title, url);
       const lyrics = data?.split(/\r?\n/);
       setSelectedSong({ title, lyrics: lyrics ?? [], url });
     } else if (src === "rapid") {
