@@ -1,4 +1,4 @@
-from flask import Flask, request, Response, send_file, send_from_directory
+from flask import Flask, request, Response, send_file
 from flask_cors import CORS, cross_origin
 from threading import Thread
 import json
