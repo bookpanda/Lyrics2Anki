@@ -80,16 +80,16 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     const tokens: string[] = await fetchTokenizedWords(cleanedLyrics);
     if (tokens.length === 0) tokens.push("なんでもない");
 
-    // console.log(`tokens:`);
-    // console.log(tokens);
+    console.log(`tokens:`);
+    console.log(tokens);
 
     const fg = await addFurigana(tokens);
-    // console.log(`fg: `);
-    // console.log(fg);
+    console.log(`fg: `);
+    console.log(fg);
 
     const meaning = await fetchTranslation(tokens);
-    // console.log(`meaning: `);
-    // console.log(meaning);
+    console.log(`meaning: `);
+    console.log(meaning);
 
     setVocab(() =>
       tokens.map((token, idx) => {

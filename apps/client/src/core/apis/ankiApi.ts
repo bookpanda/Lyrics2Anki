@@ -8,7 +8,13 @@ export const fetchAnkiCards = async (title: string, vocab: VocabType) => {
     body: JSON.stringify({ title, vocab }),
   };
   const data = await fetch(url, options)
-    .then((res) => res.json())
+    .then((res) => res.blob())
+    .then((data) => {
+      const a = document.createElement("a");
+      a.href = window.URL.createObjectURL(data);
+      a.download = `${title}.apkg`;
+      a.click();
+    })
     .catch((err) => console.error("error:" + err));
-  return data.content;
+  return data;
 };

@@ -1,4 +1,4 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, send_file, send_from_directory
 from flask_cors import CORS, cross_origin
 from threading import Thread
 import json
@@ -80,13 +80,10 @@ def anki():
 
     genanki.Package(lyricsDeck).write_to_file("output.apkg")
 
-    data = {"content": "lol"}
-    json_dump = json.dumps(data)
-    res = Response(json_dump)
-    res.headers["Content-Type"] = "application/json"
-    res.headers["Access-Control-Allow-Origin"] = "*"
-    res.headers["Access-Control-Allow-Credentials"] = True
-    return res
+    try:
+        return send_file("output.apkg")
+    except Exception as e:
+        return str(e)
 
 
 def run():
