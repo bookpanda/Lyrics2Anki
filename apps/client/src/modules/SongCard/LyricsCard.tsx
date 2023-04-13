@@ -8,10 +8,14 @@ export interface ILyricsCard extends PropsWithChildren {
 
 export const LyricsCard: FC<ILyricsCard> = ({ lyrics, title }) => {
   return (
-    <div>
-      <Typography variant="h5">{title}</Typography>
+    <div className="p-8">
+      <Typography variant="h5" color="secondary.main">
+        {title}
+      </Typography>
       {lyrics.map((line, idx) => (
-        <p key={idx}>{line}</p>
+        <Typography key={idx} variant="subtitle2" color="secondary.light">
+          {line}
+        </Typography>
       ))}
     </div>
   );

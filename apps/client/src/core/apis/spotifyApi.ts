@@ -8,7 +8,7 @@ export type SpotifySearch = {
         images: { url: string; height: string; weight: string }[];
         name: string;
       };
-      artists: { name: string };
+      artists: { name: string }[];
       duration_ms: number;
       id: string;
       name: string;

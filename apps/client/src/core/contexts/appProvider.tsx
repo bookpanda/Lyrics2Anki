@@ -42,7 +42,9 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     if (spotifySearch) {
       const items = spotifySearch.tracks.items;
       items.map((i) => {
-        const artists = i.artists.name;
+        const artists = i.artists.map((a) => a.name).join(", ");
+        console.log(artists);
+
         let seconds = Math.floor(i.duration_ms / 1000);
         const minutes = Math.floor(seconds / 60);
         seconds -= minutes * 60;
