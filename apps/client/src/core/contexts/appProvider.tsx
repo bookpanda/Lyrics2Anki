@@ -1,8 +1,8 @@
-import { FC, PropsWithChildren, useState } from "react";
+import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 
 import { fetchAnkiCards } from "../apis/ankiApi";
 // import { fetchGeniusLyrics, fetchGeniusSearch } from "../apis/geniusApi";
-import { fetchRapidLyrics, fetchRapidSearch } from "../apis/rapidApi";
+import { fetchRapidLyrics, fetchSpotifySearch } from "../apis/spotifyApi";
 import {
   addFurigana,
   cleanLyrics,
@@ -23,14 +23,13 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [selectedSong, setSelectedSong] = useState<selectedSongType>(null);
   const [vocab, setVocab] = useState<VocabType>(null);
 
-  const getSongs = async () => {
+  const getSongs = useCallback(async () => {
     // setSelectedSong(null);
     // setVocab(null);
-    // const dataGenius = await fetchGeniusSearch(searchTrack, searchArtist);
-    const dataRapid = await fetchRapidSearch(searchTrack, searchArtist);
     const newSongs: songsType = [];
-    // if (dataGenius) {
-    //   dataGenius.map((s) => {
+    // const geniusSearch = await fetchGeniusSearch(searchTrack, searchArtist);
+    // if (geniusSearch) {
+    //   geniusSearch.map((s) => {
     //     newSongs?.push({
     //       albumArt: s.albumArt,
     //       title: s.title,
@@ -39,32 +38,38 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     //     });
     //   });
     // }
-    if (dataRapid) {
-      dataRapid.tracks.items.map((s) => {
-        const artists = s.data.artists.items.map((a) => a.profile.name);
-        let seconds = Math.floor(s.data.duration.totalMilliseconds / 1000);
+    const spotifySearch = await fetchSpotifySearch(searchTrack, searchArtist);
+    if (spotifySearch) {
+      const items = spotifySearch.tracks.items;
+      items.map((i) => {
+        const artists = i.artists.name;
+        let seconds = Math.floor(i.duration_ms / 1000);
         const minutes = Math.floor(seconds / 60);
         seconds -= minutes * 60;
         newSongs?.push({
           artists,
-          albumArt: s.data.albumOfTrack.coverArt.sources[0].url,
-          album: s.data.albumOfTrack.name,
-          title: s.data.name,
-          url: s.data.id,
+          albumArt: i.album.images[0].url,
+          album: i.album.name,
+          title: i.name,
+          id: i.id,
           duration: { minutes, seconds },
-          src: "rapid",
+          src: "spotify",
         });
       });
     }
     setSongs(() => newSongs);
-  };
+  }, [searchArtist, searchTrack]);
+
+  useEffect(() => {
+    getSongs();
+  }, [searchArtist, searchTrack, getSongs]);
 
   const selectSong = async (title: string, url: string, src: string) => {
     if (src === "genius") {
       // const data = await fetchGeniusLyrics(url);
       // const lyrics = data?.split(/\r?\n/);
       // setSelectedSong({ title, lyrics: lyrics ?? [], url });
-    } else if (src === "rapid") {
+    } else if (src === "spotify") {
       let data = await fetchRapidLyrics(url);
       if (!data) data = { lyrics: { lines: [{ words: "No lyrics" }] } };
       if (data.lyrics) {

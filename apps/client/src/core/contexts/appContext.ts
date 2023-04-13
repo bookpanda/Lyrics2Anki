@@ -2,13 +2,13 @@ import { createContext, useContext } from "react";
 
 export type songsType =
   | {
-      artists: string[];
+      artists: string;
       album: string;
       albumArt: string;
       title: string;
-      url: string;
+      id: string;
       duration: { minutes: number; seconds: number };
-      src: "genius" | "rapid";
+      src: "genius" | "spotify";
     }[]
   | null;
 

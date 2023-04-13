@@ -16,10 +16,10 @@ const IndexPage: NextPage = () => {
           <div className="mt-8 w-1/2">
             {songs?.map((s) => (
               <SongCard
-                key={s.url}
+                key={s.id}
                 title={s.title}
                 albumArt={s.albumArt}
-                url={s.url}
+                url={s.id}
                 src={s.src}
               />
             ))}
