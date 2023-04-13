@@ -1,8 +1,10 @@
 import "$styles/global.scss";
+import { ThemeProvider } from "@mui/material";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 // import Script from "next/script";
 import { AppProvider } from "src/core/contexts/appProvider";
+import { theme } from "src/theme";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -17,7 +19,9 @@ function App({ Component, pageProps }: AppProps) {
         src="/static/kuroshiro-analyzer-kuromoji.min.js"
       ></Script> */}
       <AppProvider>
-        <Component {...pageProps} />
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
       </AppProvider>
     </>
   );

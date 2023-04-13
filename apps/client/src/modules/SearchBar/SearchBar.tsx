@@ -1,32 +1,23 @@
-import Button from "@mui/joy/Button";
-import Input from "@mui/joy/Input";
-import { Typography } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useAppContext } from "src/core/contexts";
 
 export const SearchBar = () => {
-  const { getAnkiCards, getSongs, setSearchArtist, setSearchTrack } =
-    useAppContext();
+  const { getAnkiCards, setSearchTrack } = useAppContext();
   return (
-    <div>
-      <Typography variant="h5">Search Track</Typography>
-      <Input
-        variant="solid"
-        placeholder="Type in here…"
-        onChange={(e) => setSearchTrack(e.target.value)}
-      />
-      <Typography variant="h5">Search Artist</Typography>
-      <Input
-        placeholder="Type in here…"
-        onChange={(e) => setSearchArtist(e.target.value)}
-      />
+    <div className="w-full bg-red-100">
+      <div className="flex w-full space-x-8">
+        <TextField
+          sx={{ width: "30%" }}
+          label="Track name"
+          onChange={(e) => setSearchTrack(e.target.value)}
+        />
+        <TextField
+          sx={{ width: "30%" }}
+          label="Artist name"
+          onChange={(e) => setSearchTrack(e.target.value)}
+        />
+      </div>
       <div className="flex space-x-4">
-        <Button
-          variant="outlined"
-          onClick={() => getSongs()}
-          sx={{ marginTop: 2 }}
-        >
-          Search
-        </Button>
         <Button
           variant="outlined"
           onClick={() => getAnkiCards()}
