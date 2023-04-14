@@ -1,30 +1,34 @@
-import { Button, TextField } from "@mui/material";
+import { Alert, TextField } from "@mui/material";
+import { FC } from "react";
 import { useAppContext } from "src/core/contexts";
 
-export const SearchBar = () => {
-  const { getAnkiCards, setSearchTrack } = useAppContext();
+export const SearchBar: FC = () => {
+  const { alert, getAnkiCards, setSearchTrack } = useAppContext();
   return (
-    <div className="w-full bg-red-100">
+    <div className="w-full">
       <div className="flex w-full space-x-8">
         <TextField
           sx={{ width: "30%" }}
-          label="Track name"
+          placeholder="Track Name"
           onChange={(e) => setSearchTrack(e.target.value)}
+          InputProps={{
+            disableUnderline: true,
+          }}
         />
         <TextField
           sx={{ width: "30%" }}
-          label="Artist name"
+          placeholder="Artist Name"
           onChange={(e) => setSearchTrack(e.target.value)}
         />
       </div>
-      <div className="flex space-x-4">
-        <Button
-          variant="outlined"
+      <div className="mt-4 flex items-center space-x-4">
+        <button
+          className="rounded-xl bg-secondary.dark p-2 px-4 font-[Gotham] font-semibold transition hover:bg-[#0fa243]"
           onClick={() => getAnkiCards()}
-          sx={{ marginTop: 2 }}
         >
           Get AnkiCards
-        </Button>
+        </button>
+        {alert && <Alert severity="error">{alert}</Alert>}
       </div>
     </div>
   );

@@ -13,7 +13,12 @@ export const LyricsCard: FC<ILyricsCard> = ({ lyrics, title }) => {
         {title}
       </Typography>
       {lyrics.map((line, idx) => (
-        <Typography key={idx} variant="subtitle2" color="secondary.light">
+        <Typography
+          key={idx}
+          variant="subtitle2"
+          color="secondary.light"
+          fontWeight={300}
+        >
           {line}
         </Typography>
       ))}

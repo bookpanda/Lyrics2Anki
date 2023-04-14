@@ -17,7 +17,35 @@ export const theme = createTheme({
   typography: {
     fontFamily: "Gotham",
   },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          color: "red",
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: colorPalette.default.secondary.dark,
 
+          color: colorPalette.default.primary.dark,
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          input: {
+            color: colorPalette.default.secondary.main,
+            backgroundColor: colorPalette.default.primary.light,
+            borderRadius: 4,
+          },
+        },
+      },
+    },
+  },
   palette: {
     primary: {
       light: colorPalette.default.primary.light,

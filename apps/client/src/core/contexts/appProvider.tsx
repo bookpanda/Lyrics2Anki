@@ -11,22 +11,25 @@ import {
 import { fetchTranslation } from "../apis/translateApi";
 import {
   AppContext,
-  VocabType,
+  alert,
   selectedSongType,
-  songsType,
+  songs,
+  vocab,
 } from "./appContext";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [searchTrack, setSearchTrack] = useState("");
   const [searchArtist, setSearchArtist] = useState("");
-  const [songs, setSongs] = useState<songsType>(null);
+  const [songs, setSongs] = useState<songs>(null);
   const [selectedSong, setSelectedSong] = useState<selectedSongType>(null);
-  const [vocab, setVocab] = useState<VocabType>(null);
+  const [vocab, setVocab] = useState<vocab>(null);
+  const [alert, setAlert] = useState<alert>(null);
 
   const getSongs = useCallback(async () => {
     // setSelectedSong(null);
     // setVocab(null);
-    const newSongs: songsType = [];
+    setAlert(null);
+    const newSongs: songs = [];
     // const geniusSearch = await fetchGeniusSearch(searchTrack, searchArtist);
     // if (geniusSearch) {
     //   geniusSearch.map((s) => {
@@ -67,6 +70,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [searchArtist, searchTrack, getSongs]);
 
   const selectSong = async (title: string, url: string, src: string) => {
+    setAlert(null);
     if (src === "genius") {
       // const data = await fetchGeniusLyrics(url);
       // const lyrics = data?.split(/\r?\n/);
@@ -92,10 +96,14 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   };
 
   const getAnkiCards = async () => {
-    const cleanedLyrics = await cleanLyrics(selectedSong?.lyrics ?? []);
+    if (!selectedSong) {
+      setAlert("Please select a song first");
+      return;
+    }
+    const cleanedLyrics = cleanLyrics(selectedSong?.lyrics ?? []);
     const tokens: string[] = await fetchTokenizedWords(cleanedLyrics);
     if (tokens.length === 0) {
-      // some warning
+      setAlert("Song has no Japanese characters");
       return;
     }
     console.log(`tokens:`);
@@ -131,6 +139,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         selectSong,
         getAnkiCards,
         vocab,
+        alert,
       }}
     >
       {children}

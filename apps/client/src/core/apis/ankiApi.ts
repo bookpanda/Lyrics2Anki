@@ -1,6 +1,6 @@
-import { VocabType } from "../contexts/appContext";
+import { vocab } from "../contexts/appContext";
 
-export const fetchAnkiCards = async (title: string, vocab: VocabType) => {
+export const fetchAnkiCards = async (title: string, vocab: vocab) => {
   const url = `${process.env.NEXT_PUBLIC_SERVER_URL as string}/anki`;
   const options = {
     method: "POST",

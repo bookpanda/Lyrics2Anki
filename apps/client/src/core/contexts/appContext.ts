@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export type songsType =
+export type songs =
   | {
       artists: string;
       album: string;
@@ -12,7 +12,7 @@ export type songsType =
     }[]
   | null;
 
-export type lyricsType = { lyrics: string[]; url: string } | null;
+export type lyrics = { lyrics: string[]; url: string } | null;
 
 export type selectedSongType = {
   title: string;
@@ -20,21 +20,24 @@ export type selectedSongType = {
   url: string;
 } | null;
 
-export type VocabType =
+export type vocab =
   | { token: string; furigana: string; translation: string }[]
   | null;
+
+export type alert = string | null;
 
 interface IAppContext {
   searchTrack: string;
   setSearchTrack: (s: string) => void;
   searchArtist: string;
   setSearchArtist: (s: string) => void;
-  songs: songsType;
+  songs: songs;
   getSongs: () => void;
   selectedSong: selectedSongType;
   selectSong: (title: string, url: string, src: string) => void;
   getAnkiCards: () => void;
-  vocab: VocabType;
+  vocab: vocab;
+  alert: alert;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -48,6 +51,7 @@ export const AppContext = createContext<IAppContext>({
   selectSong: () => null,
   getAnkiCards: () => null,
   vocab: null,
+  alert: null,
 });
 
 export const useAppContext = () => {

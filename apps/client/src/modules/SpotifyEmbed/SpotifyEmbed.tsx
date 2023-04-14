@@ -1,7 +1,8 @@
 import { Slide } from "@mui/material";
+import { FC } from "react";
 import { useAppContext } from "src/core/contexts";
 
-export const SpotifyEmbed = () => {
+export const SpotifyEmbed: FC = () => {
   const { selectedSong } = useAppContext();
   return (
     <div className="flex h-full w-1/2 items-center">

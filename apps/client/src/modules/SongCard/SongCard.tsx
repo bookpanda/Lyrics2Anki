@@ -1,4 +1,4 @@
-import { Paper, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import clsx from "clsx";
 import Image from "next/image";
 import { FC, PropsWithChildren } from "react";
