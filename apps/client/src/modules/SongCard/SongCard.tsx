@@ -1,8 +1,9 @@
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import clsx from "clsx";
 import Image from "next/image";
 import { FC, PropsWithChildren } from "react";
 import { useAppContext } from "src/core/contexts";
+import { theme } from "src/theme";
 
 export interface ISongCard extends PropsWithChildren {
   id: number;
@@ -26,6 +27,7 @@ export const SongCard: FC<ISongCard> = ({
   url,
 }) => {
   const { selectSong, selectedSong } = useAppContext();
+  const breakSM = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <div
       className={clsx(
@@ -51,9 +53,14 @@ export const SongCard: FC<ISongCard> = ({
         height={60}
         // style={{ width: "10%", height: "auto" }}
         alt="albumArt"
-        className="mr-8"
+        className={clsx(breakSM ? "mr-8" : "mr-4")}
       />
-      <div className="mr-5 flex w-[30%] flex-col">
+      <div
+        className={clsx(
+          " flex flex-col",
+          breakSM ? " mr-5 w-[30%]" : "mr-2 w-[40%]"
+        )}
+      >
         <Typography
           color={
             selectedSong?.title === title ? "secondary.dark" : "secondary.main"
@@ -73,26 +80,30 @@ export const SongCard: FC<ISongCard> = ({
           {artist}
         </Typography>
       </div>
-      <div className="mr-5 flex w-[25%] flex-col">
-        <Typography
-          color="secondary.light"
-          variant="subtitle1"
-          fontWeight={300}
-          noWrap
-        >
-          {album}
-        </Typography>
-      </div>
-      <div className="mr-5 flex w-[10%] flex-col">
-        <Typography
-          color="secondary.light"
-          variant="subtitle1"
-          fontWeight={300}
-          noWrap
-        >
-          {duration.minutes}:{duration.seconds}
-        </Typography>
-      </div>
+      {breakSM && (
+        <div className="mr-5 flex w-[25%] flex-col">
+          <Typography
+            color="secondary.light"
+            variant="subtitle1"
+            fontWeight={300}
+            noWrap
+          >
+            {album}
+          </Typography>
+        </div>
+      )}
+      {breakSM && (
+        <div className="mr-5 flex w-[10%] flex-col">
+          <Typography
+            color="secondary.light"
+            variant="subtitle1"
+            fontWeight={300}
+            noWrap
+          >
+            {duration.minutes}:{duration.seconds}
+          </Typography>
+        </div>
+      )}
     </div>
   );
 };

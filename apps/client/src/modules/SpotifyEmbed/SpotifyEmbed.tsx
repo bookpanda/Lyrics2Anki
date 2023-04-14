@@ -1,11 +1,20 @@
-import { Slide } from "@mui/material";
+import { Slide, useMediaQuery } from "@mui/material";
+import clsx from "clsx";
 import { FC } from "react";
 import { useAppContext } from "src/core/contexts";
+import { theme } from "src/theme";
 
 export const SpotifyEmbed: FC = () => {
   const { selectedSong } = useAppContext();
+  const breakSM = useMediaQuery(theme.breakpoints.up("sm"));
+  const breakMD = useMediaQuery(theme.breakpoints.up("md"));
   return (
-    <div className="flex h-full w-1/2 items-center">
+    <div
+      className={clsx(
+        "flex h-full items-center",
+        breakMD ? "w-1/2" : breakSM ? "w-2/3" : "w-full"
+      )}
+    >
       <Slide direction="left" in={Boolean(selectedSong)}>
         <iframe
           title="spotify-embed"
