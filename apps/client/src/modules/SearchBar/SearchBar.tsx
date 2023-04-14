@@ -11,9 +11,6 @@ export const SearchBar: FC = () => {
           sx={{ width: "30%" }}
           placeholder="Track Name"
           onChange={(e) => setSearchTrack(e.target.value)}
-          InputProps={{
-            disableUnderline: true,
-          }}
         />
         <TextField
           sx={{ width: "30%" }}
@@ -23,7 +20,7 @@ export const SearchBar: FC = () => {
       </div>
       <div className="mt-4 flex items-center space-x-4">
         <button
-          className="rounded-xl bg-secondary.dark p-2 px-4 font-[Gotham] font-semibold transition hover:bg-[#0fa243]"
+          className="rounded-md bg-secondary.dark p-2 px-4 font-[Gotham] font-semibold transition hover:bg-[#0fa243]"
           onClick={() => getAnkiCards()}
         >
           Get AnkiCards

@@ -8,8 +8,9 @@ import { useAppContext } from "src/core/contexts";
 const IndexPage: NextPage = () => {
   const { selectedSong, songs, vocab } = useAppContext();
   return (
-    <div className="theme min-h-[100vh] w-full overflow-x-hidden bg-primary.dark">
+    <div className="theme relative z-10 min-h-[100vh] w-full overflow-x-hidden bg-primary.dark">
       <Header />
+      <div className="rgb-bg absolute -z-20 h-[50vh] w-full bg-gradient-to-b from-transparent to-primary.dark opacity-80" />
       <Container
         maxWidth="xl"
         sx={{
@@ -42,17 +43,6 @@ const IndexPage: NextPage = () => {
                   title={selectedSong.title}
                   lyrics={selectedSong.lyrics}
                 />
-              </div>
-            )}
-            {vocab && (
-              <div className="w-1/2">
-                {vocab.map((v, idx) => (
-                  <div key={idx} className="flex space-x-2">
-                    <p>{v.token}</p>
-                    <p>{v.furigana}</p>
-                    <p>{v.translation}</p>
-                  </div>
-                ))}
               </div>
             )}
           </div>

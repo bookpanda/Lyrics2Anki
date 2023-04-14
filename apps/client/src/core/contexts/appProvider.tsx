@@ -46,8 +46,6 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
       const items = spotifySearch.tracks.items;
       items.map((i) => {
         const artists = i.artists.map((a) => a.name).join(", ");
-        console.log(artists);
-
         let seconds = Math.floor(i.duration_ms / 1000);
         const minutes = Math.floor(seconds / 60);
         seconds -= minutes * 60;
@@ -106,16 +104,16 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
       setAlert("Song has no Japanese characters");
       return;
     }
-    console.log(`tokens:`);
-    console.log(tokens);
+    // console.log(`tokens:`);
+    // console.log(tokens);
 
     const fg = await addFurigana(tokens);
-    console.log(`fg: `);
-    console.log(fg);
+    // console.log(`fg: `);
+    // console.log(fg);
 
     const meaning = await fetchTranslation(tokens);
-    console.log(`meaning: `);
-    console.log(meaning);
+    // console.log(`meaning: `);
+    // console.log(meaning);
 
     setVocab(() =>
       tokens.map((token, idx) => {
