@@ -63,7 +63,7 @@ export const SongCard: FC<ISongCard> = ({
       >
         <Typography
           color={
-            selectedSong?.title === title ? "secondary.dark" : "secondary.main"
+            selectedSong?.url === url ? "secondary.dark" : "secondary.main"
           }
           variant="subtitle1"
           fontWeight={300}
