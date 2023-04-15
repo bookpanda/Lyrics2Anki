@@ -31,7 +31,7 @@ export const SongCard: FC<ISongCard> = ({
   return (
     <div
       className={clsx(
-        "mt-4 flex items-center rounded-md p-2 hover:bg-primary.light"
+        "mt-4 flex items-center rounded-md p-2 hover:cursor-pointer hover:bg-primary.light"
       )}
       onClick={() => selectSong(title, url, src)}
       role="presentation"
