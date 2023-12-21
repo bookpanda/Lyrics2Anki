@@ -1,0 +1,12 @@
+{
+    "data": {
+        "title": "a",
+        "vocab": [
+            {
+                "token": "a",
+                "furigana": "b",
+                "translation": "c"
+            }
+        ]
+    }
+  }

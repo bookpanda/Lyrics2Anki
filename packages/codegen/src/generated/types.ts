@@ -2149,6 +2149,8 @@ export enum ModRole {
   Admin = 'ADMIN',
   /** An anime data moderator */
   AnimeData = 'ANIME_DATA',
+  /** A character data moderator */
+  CharacterData = 'CHARACTER_DATA',
   /** A community moderator */
   Community = 'COMMUNITY',
   /** An AniList developer */
@@ -2170,7 +2172,9 @@ export enum ModRole {
   /** A retired moderator */
   Retired = 'RETIRED',
   /** A social media moderator */
-  SocialMedia = 'SOCIAL_MEDIA'
+  SocialMedia = 'SOCIAL_MEDIA',
+  /** A staff data moderator */
+  StaffData = 'STAFF_DATA'
 }
 
 export type Mutation = {
