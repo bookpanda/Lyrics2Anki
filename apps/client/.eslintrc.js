@@ -1,3 +1,3 @@
 // @ts-check
 
-module.exports = require("@bookpanda/config/eslint").nextConfig();
+module.exports = require('@bookpanda/config/eslint').nextConfig();

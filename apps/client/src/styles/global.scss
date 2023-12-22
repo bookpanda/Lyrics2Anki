@@ -6,61 +6,61 @@
     --primary-light: #242424;
     --primary-main: #121212;
     --primary-dark: #000000;
-    --secondary-light: #B3B3B3;
-    --secondary-main: #FFFFFF;
-    --secondary-dark: #1ED760;
+    --secondary-light: #b3b3b3;
+    --secondary-main: #ffffff;
+    --secondary-dark: #1ed760;
 }
 
 @font-face {
-    font-family: "Gotham";
+    font-family: 'Gotham';
     font-weight: 900;
-    src: url("../font/Gotham-Black.otf");
+    src: url('../font/Gotham-Black.otf');
 }
 @font-face {
-    font-family: "Gotham";
+    font-family: 'Gotham';
     font-weight: 700;
-    src: url("../font/Gotham-Bold.otf");
+    src: url('../font/Gotham-Bold.otf');
 }
 @font-face {
-    font-family: "Gotham";
+    font-family: 'Gotham';
     font-weight: 500;
-    src: url("../font/GothamMedium.ttf");
+    src: url('../font/GothamMedium.ttf');
 }
 @font-face {
-    font-family: "Gotham";
+    font-family: 'Gotham';
     font-weight: 400;
-    src: url("../font/Gotham-Light.otf");
+    src: url('../font/Gotham-Light.otf');
 }
 @font-face {
-    font-family: "Gotham";
+    font-family: 'Gotham';
     font-weight: 300;
-    src: url("../font/Gotham-Light.otf");
+    src: url('../font/Gotham-Light.otf');
 }
 @font-face {
-    font-family: "Gotham";
+    font-family: 'Gotham';
     font-weight: 100;
-    src: url("../font/Gotham-Thin.otf");
+    src: url('../font/Gotham-Thin.otf');
 }
 
 @keyframes bgcolor {
     0% {
-        background-color: #45a3e5
+        background-color: #45a3e5;
     }
 
     25% {
-        background-color: #66bf39
+        background-color: #66bf39;
     }
 
     50% {
-        background-color: #eb670f
+        background-color: #eb670f;
     }
 
     75% {
-        background-color: #f35
+        background-color: #f35;
     }
 
     100% {
-        background-color: #864cbf
+        background-color: #864cbf;
     }
 }
 

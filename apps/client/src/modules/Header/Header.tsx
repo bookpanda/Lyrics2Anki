@@ -1,38 +1,42 @@
-import { SpotifyEmbed } from "$modules/SpotifyEmbed";
-import { Typography, useMediaQuery } from "@mui/material";
-import clsx from "clsx";
-import { FC } from "react";
-import { useAppContext } from "src/core/contexts";
-import { theme } from "src/theme";
+import { SpotifyEmbed } from '$modules/SpotifyEmbed';
+import { Typography, useMediaQuery } from '@mui/material';
+import clsx from 'clsx';
+import { FC } from 'react';
+import { useAppContext } from 'src/core/contexts';
+import { theme } from 'src/theme';
 
 export const Header: FC = () => {
-	const { selectedSong } = useAppContext();
-	const breakLG = useMediaQuery(theme.breakpoints.up("lg"));
-	return breakLG ? (
-		<div
-			className={clsx(
-				"rgb-bg flex h-[200px] w-full items-center justify-around bg-primary.main",
-			)}
-		>
-			<Typography variant="h2" fontWeight={700} color="secondary.main">
-				Lyrics2Anki
-			</Typography>
+    const { selectedSong } = useAppContext();
+    const breakLG = useMediaQuery(theme.breakpoints.up('lg'));
+    return breakLG ? (
+        <div
+            className={clsx(
+                'rgb-bg flex h-[200px] w-full items-center justify-around bg-primary.main'
+            )}
+        >
+            <Typography variant="h2" fontWeight={700} color="secondary.main">
+                Lyrics2Anki
+            </Typography>
 
-			<SpotifyEmbed />
-		</div>
-	) : (
-		<div
-			className={clsx(
-				"rgb-bg flex h-[200px] w-full items-center justify-around bg-primary.main",
-			)}
-		>
-			{selectedSong ? (
-				<SpotifyEmbed />
-			) : (
-				<Typography variant="h2" fontWeight={700} color="secondary.main">
-					Lyrics2Anki
-				</Typography>
-			)}
-		</div>
-	);
+            <SpotifyEmbed />
+        </div>
+    ) : (
+        <div
+            className={clsx(
+                'rgb-bg flex h-[200px] w-full items-center justify-around bg-primary.main'
+            )}
+        >
+            {selectedSong ? (
+                <SpotifyEmbed />
+            ) : (
+                <Typography
+                    variant="h2"
+                    fontWeight={700}
+                    color="secondary.main"
+                >
+                    Lyrics2Anki
+                </Typography>
+            )}
+        </div>
+    );
 };
