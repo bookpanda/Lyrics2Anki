@@ -1,1 +1,1 @@
-export { SpotifyEmbed } from "./SpotifyEmbed";
+export { SpotifyEmbed } from './SpotifyEmbed';
