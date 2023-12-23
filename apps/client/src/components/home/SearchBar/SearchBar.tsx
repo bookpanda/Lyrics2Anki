@@ -1,7 +1,7 @@
 import { Alert, TextField, Typography, useMediaQuery } from "@mui/material";
 import clsx from "clsx";
 import { FC } from "react";
-import { useAppContext } from "src/core/contexts";
+import { useAppContext } from "src/contexts";
 import { theme } from "src/theme";
 
 export const SearchBar: FC = () => {

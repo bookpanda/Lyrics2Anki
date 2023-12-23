@@ -2,7 +2,7 @@ import { Typography, useMediaQuery } from "@mui/material";
 import clsx from "clsx";
 import Image from "next/image";
 import { FC, PropsWithChildren } from "react";
-import { useAppContext } from "src/core/contexts";
+import { useAppContext } from "src/contexts";
 import { theme } from "src/theme";
 
 export interface ISongCard extends PropsWithChildren {

@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 
 import { fetchAnkiCards } from "../apis/ankiApi";
