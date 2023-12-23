@@ -1,2 +1,2 @@
-export { SongCard } from './SongCard';
-export { LyricsCard } from './LyricsCard';
+export { LyricsCard } from "./LyricsCard";
+export { SongCard } from "./SongCard";

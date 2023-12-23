@@ -1,4 +1,4 @@
-declare module 'genius-lyrics-api' {
+declare module "genius-lyrics-api" {
     export type options = {
         title: string;
         artist: string;

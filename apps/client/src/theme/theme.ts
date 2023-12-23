@@ -1,7 +1,7 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from "@mui/material";
 
 // import gotham from "$"
-import { colorPalette } from './colors';
+import { colorPalette } from "./colors";
 
 const breakpoints = {
     values: {
@@ -15,13 +15,13 @@ const breakpoints = {
 
 export const theme = createTheme({
     typography: {
-        fontFamily: 'Gotham',
+        fontFamily: "Gotham",
     },
     components: {
         MuiOutlinedInput: {
             styleOverrides: {
                 root: {
-                    color: 'red',
+                    color: "red",
                 },
             },
         },

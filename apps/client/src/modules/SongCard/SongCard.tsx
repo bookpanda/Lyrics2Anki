@@ -1,9 +1,9 @@
-import { Typography, useMediaQuery } from '@mui/material';
-import clsx from 'clsx';
-import Image from 'next/image';
-import { FC, PropsWithChildren } from 'react';
-import { useAppContext } from 'src/core/contexts';
-import { theme } from 'src/theme';
+import { Typography, useMediaQuery } from "@mui/material";
+import clsx from "clsx";
+import Image from "next/image";
+import { FC, PropsWithChildren } from "react";
+import { useAppContext } from "src/core/contexts";
+import { theme } from "src/theme";
 
 export interface ISongCard extends PropsWithChildren {
     id: number;
@@ -27,11 +27,11 @@ export const SongCard: FC<ISongCard> = ({
     url,
 }) => {
     const { selectSong, selectedSong } = useAppContext();
-    const breakSM = useMediaQuery(theme.breakpoints.up('sm'));
+    const breakSM = useMediaQuery(theme.breakpoints.up("sm"));
     return (
         <div
             className={clsx(
-                'mt-4 flex items-center rounded-md p-2 hover:cursor-pointer hover:bg-primary.light'
+                "mt-4 flex items-center rounded-md p-2 hover:cursor-pointer hover:bg-primary.light"
             )}
             onClick={() => selectSong(title, url, src)}
             role="presentation"
@@ -53,19 +53,19 @@ export const SongCard: FC<ISongCard> = ({
                 height={60}
                 // style={{ width: "10%", height: "auto" }}
                 alt="albumArt"
-                className={clsx(breakSM ? 'mr-8' : 'mr-4')}
+                className={clsx(breakSM ? "mr-8" : "mr-4")}
             />
             <div
                 className={clsx(
-                    ' flex flex-col',
-                    breakSM ? ' mr-5 w-[30%]' : 'mr-2 w-[40%]'
+                    " flex flex-col",
+                    breakSM ? " mr-5 w-[30%]" : "mr-2 w-[40%]"
                 )}
             >
                 <Typography
                     color={
                         selectedSong?.url === url
-                            ? 'secondary.dark'
-                            : 'secondary.main'
+                            ? "secondary.dark"
+                            : "secondary.main"
                     }
                     variant="subtitle1"
                     fontWeight={300}

@@ -1,5 +1,5 @@
-import { vocab } from '../contexts/appContext';
-import * as AWS from 'aws-sdk';
+import * as AWS from "aws-sdk";
+import { vocab } from "../contexts/appContext";
 
 type returnData = {
     statusCode: number;
@@ -27,17 +27,17 @@ export const fetchAnkiCards = async (title: string, vocab: vocab) => {
 
     const params: AWS.Lambda.InvocationRequest = {
         FunctionName: functionName,
-        InvocationType: 'RequestResponse',
+        InvocationType: "RequestResponse",
         Payload: JSON.stringify(payload),
     };
     const lambda = new AWS.Lambda();
 
     lambda.invoke(params, (err, data) => {
         if (err) {
-            console.error('Error calling Lambda function:', err);
+            console.error("Error calling Lambda function:", err);
         } else {
             const res = JSON.parse(data.Payload as string) as returnData;
-            base64ToFile(res.body, `${title}.apkg`, 'application/apkg');
+            base64ToFile(res.body, `${title}.apkg`, "application/apkg");
         }
     });
 };
@@ -55,7 +55,7 @@ const base64ToFile = (
     }
 
     const blob = new Blob([uint8Array], { type: mimeType });
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = fileName;
 

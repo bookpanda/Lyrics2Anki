@@ -1,11 +1,11 @@
-import Kuroshiro from 'kuroshiro';
-import KuromojiAnalyzer from 'kuroshiro-analyzer-kuromoji';
+import Kuroshiro from "kuroshiro";
+import KuromojiAnalyzer from "kuroshiro-analyzer-kuromoji";
 
 const kuroshiro = new Kuroshiro();
 const init = async () => {
     await kuroshiro.init(
         new KuromojiAnalyzer({
-            dictPath: '/static/dict',
+            dictPath: "/static/dict",
         })
     );
 };
@@ -20,9 +20,9 @@ export const cleanLyrics = (input: string[]) => {
         if (stripped) {
             stripped = stripped.replace(
                 /[[\]()-_+=!@#$%&*|'.,…“”「」\u3000]/gi,
-                ''
+                ""
             );
-            stripped = stripped.replace(/[a-z]/gi, '');
+            stripped = stripped.replace(/[a-z]/gi, "");
             stripped = stripped.trim();
             jpLyrics.push(stripped);
         }
@@ -33,13 +33,13 @@ export const cleanLyrics = (input: string[]) => {
 export const fetchTokenizedWords = async (cleanedLyrics: string[]) => {
     const url = process.env.NEXT_PUBLIC_SERVER_URL as string;
     const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cleanedLyrics),
     };
     const data = await fetch(url, options)
         .then((res) => res.json())
-        .catch((err) => console.error('error:' + err));
+        .catch((err) => console.error("error:" + err));
     return data.content;
 };
 
@@ -50,10 +50,10 @@ export const addFurigana = async (tokens: string[]) => {
     tokens.map(async (tk) => {
         const result = await kuroshiro.convert(tk, {
             // mode: "furigana",
-            to: 'hiragana',
+            to: "hiragana",
         });
         if (result !== tk) furigana.push(result);
-        else furigana.push('');
+        else furigana.push("");
     });
     return furigana;
 };

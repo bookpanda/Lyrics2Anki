@@ -1,43 +1,43 @@
 {
-  "name": "turbo-next-template",
-  "version": "0.0.0",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
-  "devDependencies": {
-    "@types/node": "^17.0.45",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "@typescript-eslint/parser": "^5.54.0",
-    "@vue/compiler-sfc": "^3.2.47",
-    "eslint": "^8.35.0",
-    "eslint-config-next": "14.0.4",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-standard-with-typescript": "^43.0.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^16.5.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "7.31.8",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "prettier": "latest",
-    "turbo": "latest",
-    "typescript": "^4.9.5"
-  },
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "packageManager": "pnpm@7.23.0",
-  "dependencies": {
-    "prettier-plugin-organize-imports": "^3.2.4",
-    "prettier-plugin-tailwindcss": "^0.5.9"
-  }
+    "name": "turbo-next-template",
+    "version": "0.0.0",
+    "private": true,
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "lint": "turbo run lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.45",
+        "@typescript-eslint/eslint-plugin": "^5.54.0",
+        "@typescript-eslint/parser": "^5.54.0",
+        "@vue/compiler-sfc": "^3.2.47",
+        "eslint": "^8.35.0",
+        "eslint-config-next": "14.0.4",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-config-standard-with-typescript": "^43.0.0",
+        "eslint-plugin-import": "^2.29.1",
+        "eslint-plugin-n": "^16.5.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "eslint-plugin-promise": "^6.1.1",
+        "eslint-plugin-react": "7.31.8",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.5",
+        "prettier": "latest",
+        "turbo": "latest",
+        "typescript": "^4.9.5"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "packageManager": "pnpm@7.23.0",
+    "dependencies": {
+        "prettier-plugin-organize-imports": "^3.2.4",
+        "prettier-plugin-tailwindcss": "^0.5.9"
+    }
 }

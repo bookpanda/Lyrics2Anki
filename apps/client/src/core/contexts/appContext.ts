@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext } from "react";
 
 export type songs =
     | {
@@ -8,7 +8,7 @@ export type songs =
           title: string;
           id: string;
           duration: { minutes: number; seconds: number };
-          src: 'genius' | 'spotify';
+          src: "genius" | "spotify";
       }[]
     | null;
 
@@ -41,9 +41,9 @@ interface IAppContext {
 }
 
 export const AppContext = createContext<IAppContext>({
-    searchArtist: '',
+    searchArtist: "",
     setSearchTrack: () => null,
-    searchTrack: '',
+    searchTrack: "",
     setSearchArtist: () => null,
     songs: null,
     getSongs: () => null,

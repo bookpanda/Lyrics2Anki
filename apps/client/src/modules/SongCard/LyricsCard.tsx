@@ -1,5 +1,5 @@
-import { Typography } from '@mui/material';
-import { FC, PropsWithChildren } from 'react';
+import { Typography } from "@mui/material";
+import { FC, PropsWithChildren } from "react";
 
 export interface ILyricsCard extends PropsWithChildren {
     lyrics: string[];

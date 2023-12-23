@@ -1,29 +1,29 @@
-import { Alert, TextField, Typography, useMediaQuery } from '@mui/material';
-import clsx from 'clsx';
-import { FC } from 'react';
-import { useAppContext } from 'src/core/contexts';
-import { theme } from 'src/theme';
+import { Alert, TextField, Typography, useMediaQuery } from "@mui/material";
+import clsx from "clsx";
+import { FC } from "react";
+import { useAppContext } from "src/core/contexts";
+import { theme } from "src/theme";
 
 export const SearchBar: FC = () => {
     const { alert, getAnkiCards, setSearchTrack } = useAppContext();
-    const breakMD = useMediaQuery(theme.breakpoints.up('md'));
+    const breakMD = useMediaQuery(theme.breakpoints.up("md"));
     return (
         <div className="w-full">
             <div
                 className={clsx(
-                    'flex w-full',
+                    "flex w-full",
                     breakMD
-                        ? 'flex-row space-x-8'
-                        : 'flex-col items-center space-y-4'
+                        ? "flex-row space-x-8"
+                        : "flex-col items-center space-y-4"
                 )}
             >
                 <TextField
-                    sx={{ width: breakMD ? '30%' : '100%' }}
+                    sx={{ width: breakMD ? "30%" : "100%" }}
                     placeholder="Track Name"
                     onChange={(e) => setSearchTrack(e.target.value)}
                 />
                 <TextField
-                    sx={{ width: breakMD ? '30%' : '100%' }}
+                    sx={{ width: breakMD ? "30%" : "100%" }}
                     placeholder="Artist Name"
                     onChange={(e) => setSearchTrack(e.target.value)}
                 />
