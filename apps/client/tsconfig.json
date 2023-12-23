@@ -3,11 +3,15 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@modules/*": ["src/modules/*"],
-            "@styles/*": ["src/styles/*"],
-            "@node_modules/*": ["node_modules/*"]
-        }
+            "@components/*": ["src/components/*"],
+            "@styles/*": ["src/styles/*"]
+        },
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ]
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
     "exclude": ["node_modules"]
 }
