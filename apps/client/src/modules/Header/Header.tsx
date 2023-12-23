@@ -1,4 +1,4 @@
-import { SpotifyEmbed } from '$modules/SpotifyEmbed';
+import { SpotifyEmbed } from '@modules/SpotifyEmbed';
 import { Typography, useMediaQuery } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
