@@ -3,9 +3,9 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "$modules/*": ["src/modules/*"],
-            "$styles/*": ["src/styles/*"],
-            "$node_modules/*": ["node_modules/*"]
+            "@modules/*": ["src/modules/*"],
+            "@styles/*": ["src/styles/*"],
+            "@node_modules/*": ["node_modules/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
