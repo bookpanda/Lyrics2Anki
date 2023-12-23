@@ -1,10 +1,10 @@
-import "$styles/global.scss";
 import { ThemeProvider } from "@mui/material";
+import "@styles/global.scss";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 // import Script from "next/script";
-import { AppProvider } from "src/core/contexts/appProvider";
-import { theme } from "src/theme";
+import { AppProvider } from "../core/contexts/appProvider";
+import { theme } from "../theme";
 
 function App({ Component, pageProps }: AppProps) {
     return (
