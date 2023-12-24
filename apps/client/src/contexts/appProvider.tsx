@@ -3,54 +3,28 @@
 import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 
 import { fetchLyrics } from "src/apis/fetchLyrics";
+import { fetchSongs } from "src/apis/fetchSongs";
+import { SelectedSong, Songs, Vocab } from "src/types/types";
 import { fetchAnkiCards } from "../apis/ankiApi";
-import { fetchSpotifySearch } from "../apis/spotifyApi";
 import {
     addFurigana,
     cleanLyrics,
     fetchTokenizedWords,
 } from "../apis/tokenizer";
 import { fetchTranslation } from "../apis/translateApi";
-import {
-    alert,
-    AppContext,
-    selectedSongType,
-    songs,
-    vocab,
-} from "./appContext";
+import { alert, AppContext } from "./appContext";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     const [searchTrack, setSearchTrack] = useState("");
     const [searchArtist, setSearchArtist] = useState("");
-    const [songs, setSongs] = useState<songs>(null);
-    const [selectedSong, setSelectedSong] = useState<selectedSongType>(null);
-    const [vocab, setVocab] = useState<vocab>(null);
+    const [songs, setSongs] = useState<Songs>([]);
+    const [selectedSong, setSelectedSong] = useState<SelectedSong>(null);
+    const [vocab, setVocab] = useState<Vocab>([]);
     const [alert, setAlert] = useState<alert>(null);
 
     const getSongs = useCallback(async () => {
         setAlert(null);
-        const newSongs: songs = [];
-        const spotifySearch = await fetchSpotifySearch(
-            searchTrack,
-            searchArtist
-        );
-        if (spotifySearch) {
-            const items = spotifySearch.tracks.items;
-            items.map((i) => {
-                const artists = i.artists.map((a) => a.name).join(", ");
-                let seconds = Math.floor(i.duration_ms / 1000);
-                const minutes = Math.floor(seconds / 60);
-                seconds -= minutes * 60;
-                newSongs?.push({
-                    artists,
-                    albumArt: i.album.images[0].url,
-                    album: i.album.name,
-                    title: i.name,
-                    id: i.id,
-                    duration: { minutes, seconds },
-                });
-            });
-        }
+        const newSongs: Songs = await fetchSongs(searchTrack, searchArtist);
         setSongs(() => newSongs);
     }, [searchArtist, searchTrack]);
 
@@ -58,13 +32,13 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         getSongs();
     }, [searchArtist, searchTrack, getSongs]);
 
-    const selectSong = async (title: string, url: string) => {
+    const selectSong = async (title: string, trackId: string) => {
         setAlert(null);
-        const lyrics = await fetchLyrics(url);
+        const lyrics = await fetchLyrics(trackId);
         setSelectedSong({
             title,
             lyrics,
-            url,
+            url: trackId,
         });
     };
 
