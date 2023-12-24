@@ -1,10 +1,13 @@
 "use client";
 
-import { Header } from "@components/home/Header";
-import { SearchBar } from "@components/home/SearchBar";
-import { LyricsCard, SongCard } from "@components/home/SongCard";
-import { Container, ThemeProvider, useMediaQuery } from "@mui/material";
-import clsx from "clsx";
+import {
+    EditModal,
+    Footer,
+    MainList,
+    MobileTabs,
+    ProblemModal,
+} from "@components/home";
+import { useMediaQuery } from "@mui/material";
 import { useAppContext } from "src/contexts";
 import { theme } from "src/theme";
 
@@ -13,7 +16,17 @@ const Home = () => {
     const breakLG = useMediaQuery(theme.breakpoints.up("lg"));
     return (
         <>
-            <ThemeProvider theme={theme}>
+            <EditModal />
+            <div className="hidden h-screen w-full px-4 pt-8 xl:block">
+                <div className="flex h-[90%] space-x-2">
+                    <MainList />
+                    <ProblemModal />
+                </div>
+                <Footer />
+            </div>
+            <MobileTabs />
+
+            {/* <ThemeProvider theme={theme}>
                 <div className="theme relative z-10 min-h-[100vh] w-full overflow-x-hidden bg-primary.dark">
                     <Header />
 
@@ -73,7 +86,7 @@ const Home = () => {
                         </div>
                     </Container>
                 </div>
-            </ThemeProvider>
+            </ThemeProvider> */}
         </>
     );
 };
