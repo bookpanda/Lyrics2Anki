@@ -2,8 +2,9 @@
 
 import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 
+import { fetchLyrics } from "src/apis/fetchLyrics";
 import { fetchAnkiCards } from "../apis/ankiApi";
-import { fetchRapidLyrics, fetchSpotifySearch } from "../apis/spotifyApi";
+import { fetchSpotifySearch } from "../apis/spotifyApi";
 import {
     addFurigana,
     cleanLyrics,
@@ -59,22 +60,12 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
 
     const selectSong = async (title: string, url: string) => {
         setAlert(null);
-        let data = await fetchRapidLyrics(url);
-        if (!data) data = { lyrics: { lines: [{ words: "No lyrics" }] } };
-        if (data.lyrics) {
-            const lyrics = data?.lyrics.lines.map((a) => a.words);
-            setSelectedSong({
-                title,
-                lyrics: lyrics,
-                url,
-            });
-        } else {
-            setSelectedSong({
-                title,
-                lyrics: ["No lyrics"],
-                url,
-            });
-        }
+        const lyrics = await fetchLyrics(url);
+        setSelectedSong({
+            title,
+            lyrics,
+            url,
+        });
     };
 
     const getAnkiCards = async () => {
