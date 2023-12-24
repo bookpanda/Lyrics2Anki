@@ -1,5 +1,5 @@
 import { Songs } from "src/types/types";
-import { fetchSpotifySearch } from "./spotifyApi";
+import { fetchSpotifySearch } from "../apis/spotifyApi";
 
 export const fetchSongs = async (
     track: string,

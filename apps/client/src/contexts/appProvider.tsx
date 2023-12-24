@@ -2,10 +2,9 @@
 
 import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 
-import { fetchLyrics } from "src/apis/fetchLyrics";
-import { fetchSongs } from "src/apis/fetchSongs";
+import { fetchLyrics } from "src/contexts/fetchLyrics";
+import { fetchSongs } from "src/contexts/fetchSongs";
 import { SelectedSong, Songs, Vocab } from "src/types/types";
-import { fetchAnkiCards } from "../apis/ankiApi";
 import {
     addFurigana,
     cleanLyrics,
@@ -13,6 +12,7 @@ import {
 } from "../apis/tokenizer";
 import { fetchTranslation } from "../apis/translateApi";
 import { alert, AppContext } from "./appContext";
+import { fetchAnkiCards } from "./fetchAnkiCards";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     const [searchTrack, setSearchTrack] = useState("");
@@ -47,7 +47,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
             setAlert("Please select a song first");
             return;
         }
-        const cleanedLyrics = cleanLyrics(selectedSong?.lyrics ?? []);
+        const cleanedLyrics = cleanLyrics(selectedSong.lyrics);
         const tokens: string[] = await fetchTokenizedWords(cleanedLyrics);
         if (tokens.length === 0) {
             setAlert("Song has no Japanese characters");
@@ -62,7 +62,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
             })
         );
 
-        await fetchAnkiCards(selectedSong?.title ?? "No name", vocab);
+        await fetchAnkiCards(selectedSong.title ?? "No name", vocab);
     };
 
     return (
