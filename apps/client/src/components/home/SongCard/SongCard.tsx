@@ -1,3 +1,4 @@
+import { Song } from "@/types/types";
 import { Typography, useMediaQuery } from "@mui/material";
 import clsx from "clsx";
 import Image from "next/image";
@@ -5,25 +6,11 @@ import { FC, PropsWithChildren } from "react";
 import { useAppContext } from "src/contexts";
 import { theme } from "src/theme";
 
-export interface ISongCard extends PropsWithChildren {
-    id: number;
-    title: string;
-    albumArt: string;
-    album: string;
-    artist: string;
-    url: string;
-    duration: { minutes: number; seconds: number };
+export interface SongCard extends PropsWithChildren {
+    song: Song;
 }
 
-export const SongCard: FC<ISongCard> = ({
-    album,
-    albumArt,
-    artist,
-    duration,
-    id,
-    title,
-    url,
-}) => {
+export const SongCard: FC<SongCard> = ({ song }) => {
     const { selectSong, selectedSong } = useAppContext();
     const breakSM = useMediaQuery(theme.breakpoints.up("sm"));
     return (
@@ -31,7 +18,7 @@ export const SongCard: FC<ISongCard> = ({
             className={clsx(
                 "mt-4 flex items-center rounded-md p-2 hover:cursor-pointer hover:bg-primary.light"
             )}
-            onClick={() => selectSong(title, url)}
+            onClick={() => selectSong(song)}
             role="presentation"
         >
             <div className="mx-5 flex w-5 justify-center">
@@ -40,13 +27,13 @@ export const SongCard: FC<ISongCard> = ({
                     color="secondary.light"
                     variant="subtitle1"
                 >
-                    {id}
+                    {song.id}
                 </Typography>
             </div>
             <Image
-                src={albumArt}
+                src={song.albumArt}
                 unoptimized
-                loader={() => albumArt}
+                loader={() => song.albumArt}
                 width={60}
                 height={60}
                 // style={{ width: "10%", height: "auto" }}
@@ -61,7 +48,7 @@ export const SongCard: FC<ISongCard> = ({
             >
                 <Typography
                     color={
-                        selectedSong?.url === url
+                        selectedSong?.id === song.id
                             ? "secondary.dark"
                             : "secondary.main"
                     }
@@ -69,7 +56,7 @@ export const SongCard: FC<ISongCard> = ({
                     fontWeight={300}
                     noWrap
                 >
-                    {title}
+                    {song.title}
                 </Typography>
                 <Typography
                     color="secondary.light"
@@ -77,7 +64,7 @@ export const SongCard: FC<ISongCard> = ({
                     fontWeight={300}
                     noWrap
                 >
-                    {artist}
+                    {song.artists}
                 </Typography>
             </div>
             {breakSM && (
@@ -88,7 +75,7 @@ export const SongCard: FC<ISongCard> = ({
                         fontWeight={300}
                         noWrap
                     >
-                        {album}
+                        {song.album}
                     </Typography>
                 </div>
             )}
@@ -100,7 +87,7 @@ export const SongCard: FC<ISongCard> = ({
                         fontWeight={300}
                         noWrap
                     >
-                        {duration.minutes}:{duration.seconds}
+                        {song.duration.minutes}:{song.duration.seconds}
                     </Typography>
                 </div>
             )}

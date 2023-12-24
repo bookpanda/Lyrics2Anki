@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { SelectedSong, Songs, Vocab } from "src/types/types";
+import { SelectedSong, Song, Songs, Vocab } from "src/types/types";
 
 export type alert = string | null;
 
@@ -11,7 +11,7 @@ interface IAppContext {
     songs: Songs;
     getSongs: () => void;
     selectedSong: SelectedSong;
-    selectSong: (title: string, url: string) => void;
+    selectSong: (song: Song) => void;
     getAnkiCards: () => void;
     vocab: Vocab;
     alert: alert;

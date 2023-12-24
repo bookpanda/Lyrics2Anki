@@ -4,7 +4,7 @@ import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 
 import { fetchLyrics } from "src/contexts/fetchLyrics";
 import { fetchSongs } from "src/contexts/fetchSongs";
-import { SelectedSong, Songs, Vocab } from "src/types/types";
+import { SelectedSong, Song, Songs, Vocab } from "src/types/types";
 import {
     addFurigana,
     cleanLyrics,
@@ -13,6 +13,7 @@ import {
 import { fetchTranslation } from "../apis/translateApi";
 import { alert, AppContext } from "./appContext";
 import { fetchAnkiCards } from "./fetchAnkiCards";
+import { getSongColor } from "./getSongColor";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     const [searchTrack, setSearchTrack] = useState("");
@@ -32,14 +33,16 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         getSongs();
     }, [searchArtist, searchTrack, getSongs]);
 
-    const selectSong = async (title: string, trackId: string) => {
+    const selectSong = async (song: Song) => {
         setAlert(null);
-        const lyrics = await fetchLyrics(trackId);
-        setSelectedSong({
-            title,
+        const lyrics = await fetchLyrics(song.id);
+        const newSong: SelectedSong = {
+            ...song,
             lyrics,
-            url: trackId,
-        });
+            color: { bg: "", isDark: false },
+        };
+        getSongColor(newSong);
+        setSelectedSong(newSong);
     };
 
     const getAnkiCards = async () => {
