@@ -1,27 +1,5 @@
 import { createContext, useContext } from "react";
-
-export type songs =
-    | {
-          artists: string;
-          album: string;
-          albumArt: string;
-          title: string;
-          id: string;
-          duration: { minutes: number; seconds: number };
-      }[]
-    | null;
-
-export type lyrics = { lyrics: string[]; url: string } | null;
-
-export type selectedSongType = {
-    title: string;
-    lyrics: string[];
-    url: string;
-} | null;
-
-export type vocab =
-    | { token: string; furigana: string; translation: string }[]
-    | null;
+import { SelectedSong, Songs, Vocab } from "src/types/types";
 
 export type alert = string | null;
 
@@ -30,12 +8,12 @@ interface IAppContext {
     setSearchTrack: (s: string) => void;
     searchArtist: string;
     setSearchArtist: (s: string) => void;
-    songs: songs;
+    songs: Songs;
     getSongs: () => void;
-    selectedSong: selectedSongType;
+    selectedSong: SelectedSong;
     selectSong: (title: string, url: string) => void;
     getAnkiCards: () => void;
-    vocab: vocab;
+    vocab: Vocab;
     alert: alert;
 }
 
@@ -44,12 +22,12 @@ export const AppContext = createContext<IAppContext>({
     setSearchTrack: () => null,
     searchTrack: "",
     setSearchArtist: () => null,
-    songs: null,
+    songs: [],
     getSongs: () => null,
     selectedSong: null,
     selectSong: () => null,
     getAnkiCards: () => null,
-    vocab: null,
+    vocab: [],
     alert: null,
 });
 

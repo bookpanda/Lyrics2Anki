@@ -1,5 +1,5 @@
 import * as AWS from "aws-sdk";
-import { vocab } from "../contexts/appContext";
+import { Vocab } from "src/types/types";
 
 type returnData = {
     statusCode: number;
@@ -7,7 +7,7 @@ type returnData = {
     isBase64Encoded: boolean;
 };
 
-export const fetchAnkiCards = async (title: string, vocab: vocab) => {
+export const fetchAnkiCards = async (title: string, vocab: Vocab) => {
     AWS.config.update({
         region: process.env.NEXT_PUBLIC_AWS_REGION as string,
         credentials: {
