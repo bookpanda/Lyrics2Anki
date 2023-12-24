@@ -13,7 +13,6 @@ export interface ISongCard extends PropsWithChildren {
     artist: string;
     url: string;
     duration: { minutes: number; seconds: number };
-    src: string;
 }
 
 export const SongCard: FC<ISongCard> = ({
@@ -22,7 +21,6 @@ export const SongCard: FC<ISongCard> = ({
     artist,
     duration,
     id,
-    src,
     title,
     url,
 }) => {
@@ -33,7 +31,7 @@ export const SongCard: FC<ISongCard> = ({
             className={clsx(
                 "mt-4 flex items-center rounded-md p-2 hover:cursor-pointer hover:bg-primary.light"
             )}
-            onClick={() => selectSong(title, url, src)}
+            onClick={() => selectSong(title, url)}
             role="presentation"
         >
             <div className="mx-5 flex w-5 justify-center">

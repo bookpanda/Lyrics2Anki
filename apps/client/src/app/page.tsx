@@ -54,7 +54,6 @@ const Home = () => {
                                             artist={s.artists}
                                             url={s.id}
                                             duration={s.duration}
-                                            src={s.src}
                                         />
                                     ))}
                                 </div>

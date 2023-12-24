@@ -8,7 +8,6 @@ export type songs =
           title: string;
           id: string;
           duration: { minutes: number; seconds: number };
-          src: "genius" | "spotify";
       }[]
     | null;
 
@@ -34,7 +33,7 @@ interface IAppContext {
     songs: songs;
     getSongs: () => void;
     selectedSong: selectedSongType;
-    selectSong: (title: string, url: string, src: string) => void;
+    selectSong: (title: string, url: string) => void;
     getAnkiCards: () => void;
     vocab: vocab;
     alert: alert;

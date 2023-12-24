@@ -3,7 +3,6 @@
 import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 
 import { fetchAnkiCards } from "../apis/ankiApi";
-// import { fetchGeniusLyrics, fetchGeniusSearch } from "../apis/geniusApi";
 import { fetchRapidLyrics, fetchSpotifySearch } from "../apis/spotifyApi";
 import {
     addFurigana,
@@ -28,21 +27,8 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     const [alert, setAlert] = useState<alert>(null);
 
     const getSongs = useCallback(async () => {
-        // setSelectedSong(null);
-        // setVocab(null);
         setAlert(null);
         const newSongs: songs = [];
-        // const geniusSearch = await fetchGeniusSearch(searchTrack, searchArtist);
-        // if (geniusSearch) {
-        //   geniusSearch.map((s) => {
-        //     newSongs?.push({
-        //       albumArt: s.albumArt,
-        //       title: s.title,
-        //       url: s.url,
-        //       src: "genius",
-        //     });
-        //   });
-        // }
         const spotifySearch = await fetchSpotifySearch(
             searchTrack,
             searchArtist
@@ -61,7 +47,6 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
                     title: i.name,
                     id: i.id,
                     duration: { minutes, seconds },
-                    src: "spotify",
                 });
             });
         }
@@ -72,29 +57,23 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         getSongs();
     }, [searchArtist, searchTrack, getSongs]);
 
-    const selectSong = async (title: string, url: string, src: string) => {
+    const selectSong = async (title: string, url: string) => {
         setAlert(null);
-        if (src === "genius") {
-            // const data = await fetchGeniusLyrics(url);
-            // const lyrics = data?.split(/\r?\n/);
-            // setSelectedSong({ title, lyrics: lyrics ?? [], url });
-        } else if (src === "spotify") {
-            let data = await fetchRapidLyrics(url);
-            if (!data) data = { lyrics: { lines: [{ words: "No lyrics" }] } };
-            if (data.lyrics) {
-                const lyrics = data?.lyrics.lines.map((a) => a.words);
-                setSelectedSong({
-                    title,
-                    lyrics: lyrics,
-                    url,
-                });
-            } else {
-                setSelectedSong({
-                    title,
-                    lyrics: ["No lyrics"],
-                    url,
-                });
-            }
+        let data = await fetchRapidLyrics(url);
+        if (!data) data = { lyrics: { lines: [{ words: "No lyrics" }] } };
+        if (data.lyrics) {
+            const lyrics = data?.lyrics.lines.map((a) => a.words);
+            setSelectedSong({
+                title,
+                lyrics: lyrics,
+                url,
+            });
+        } else {
+            setSelectedSong({
+                title,
+                lyrics: ["No lyrics"],
+                url,
+            });
         }
     };
 
@@ -109,16 +88,8 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
             setAlert("Song has no Japanese characters");
             return;
         }
-        // console.log(`tokens:`);
-        // console.log(tokens);
-
         const fg = await addFurigana(tokens);
-        // console.log(`fg: `);
-        // console.log(fg);
-
         const meaning = await fetchTranslation(tokens);
-        // console.log(`meaning: `);
-        // console.log(meaning);
 
         setVocab(() =>
             tokens.map((token, idx) => {
