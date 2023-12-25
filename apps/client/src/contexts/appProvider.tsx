@@ -4,7 +4,7 @@ import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 
 import { fetchLyrics } from "src/contexts/fetchLyrics";
 import { fetchSongs } from "src/contexts/fetchSongs";
-import { SelectedSong, Song, Songs, Vocab } from "src/types/types";
+import { SearchCache, SelectedSong, Song, Songs, Vocab } from "src/types/types";
 import {
     addFurigana,
     cleanLyrics,
@@ -31,6 +31,13 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
 
     useEffect(() => {
         getSongs();
+        if (searchArtist !== "" || searchTrack !== "") {
+            const searchCache: SearchCache = {
+                artist: searchArtist,
+                track: searchTrack,
+            };
+            localStorage.setItem("searchCache", JSON.stringify(searchCache));
+        }
     }, [searchArtist, searchTrack, getSongs]);
 
     const selectSong = async (song: Song) => {
@@ -44,6 +51,19 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         };
         setSelectedSong(newSong);
     };
+
+    useEffect(() => {
+        const search: SearchCache = JSON.parse(
+            localStorage.getItem("searchCache") ?? "null"
+        );
+        if (search) {
+            setSearchTrack(search.track);
+            setSearchArtist(search.artist);
+        } else {
+            setSearchTrack("夜に駆ける");
+            setSearchArtist("YOASOBI");
+        }
+    }, []);
 
     const getAnkiCards = async () => {
         if (!selectedSong) {

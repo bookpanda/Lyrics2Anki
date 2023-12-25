@@ -14,3 +14,8 @@ export type SelectedSong =
     | null;
 
 export type Vocab = { token: string; furigana: string; translation: string }[];
+
+export type SearchCache = {
+    track: string;
+    artist: string;
+} | null;

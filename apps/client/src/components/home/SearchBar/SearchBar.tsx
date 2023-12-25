@@ -5,7 +5,14 @@ import { useAppContext } from "src/contexts";
 import { theme } from "src/theme";
 
 export const SearchBar: FC = () => {
-    const { alert, getAnkiCards, setSearchTrack } = useAppContext();
+    const {
+        alert,
+        getAnkiCards,
+        setSearchTrack,
+        searchTrack,
+        searchArtist,
+        setSearchArtist,
+    } = useAppContext();
     const breakMD = useMediaQuery(theme.breakpoints.up("md"));
     return (
         <div className="w-full">
@@ -21,11 +28,13 @@ export const SearchBar: FC = () => {
                     sx={{ width: breakMD ? "30%" : "100%" }}
                     placeholder="Track Name"
                     onChange={(e) => setSearchTrack(e.target.value)}
+                    value={searchTrack}
                 />
                 <TextField
                     sx={{ width: breakMD ? "30%" : "100%" }}
                     placeholder="Artist Name"
-                    onChange={(e) => setSearchTrack(e.target.value)}
+                    onChange={(e) => setSearchArtist(e.target.value)}
+                    value={searchArtist}
                 />
             </div>
             <div className="mt-4 flex items-center space-x-4">
