@@ -1,1 +1,1 @@
-export const nullColor = '#4d4a45';
+export const nullColor = "#4d4a45";
