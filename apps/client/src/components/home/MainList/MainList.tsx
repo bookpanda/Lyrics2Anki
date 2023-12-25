@@ -10,14 +10,14 @@ import { Header } from "./Header/Header";
 
 export const MainList = () => {
     const { selectedSong, songs } = useAppContext();
-    const { isProblemModalOpen } = useOpenContext();
+    const { isLyricsModalOpen } = useOpenContext();
 
     const c = selectedSong;
     return (
         <div
             className={clsx(
                 "no-scrollbar relative h-full grow overflow-scroll bg-gray-600 xl:rounded-xl",
-                !isProblemModalOpen && "w-full"
+                !isLyricsModalOpen && "w-full"
             )}
         >
             <div

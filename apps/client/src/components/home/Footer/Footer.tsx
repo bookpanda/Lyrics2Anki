@@ -8,7 +8,7 @@ import { FooterImage } from "./FooterImage";
 
 export const Footer = () => {
     const { selectedSong } = useAppContext();
-    const { openEditModal } = useOpenContext();
+    const { openLyricsModal } = useOpenContext();
 
     return (
         <>
@@ -32,7 +32,7 @@ export const Footer = () => {
                                 ? selectedSong.color.bg
                                 : nullColor,
                     }}
-                    onClick={openEditModal}
+                    onClick={openLyricsModal}
                 >
                     {selectedSong && <FooterImage song={selectedSong} />}
                     <div className="py-2">

@@ -1,12 +1,12 @@
 import { Footer, MainList } from "..";
-import { ProblemModal } from "../ProblemModal/ProblemModal";
+import { LyricsModal } from "../LyricsModal/LyricsModal";
 
 export const MobileTabs = () => {
     return (
         <>
             <div className="h-[97%]">
                 <MainList />
-                <ProblemModal />
+                <LyricsModal />
             </div>
 
             <Footer />

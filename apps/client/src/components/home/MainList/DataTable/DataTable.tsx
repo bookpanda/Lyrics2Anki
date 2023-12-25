@@ -37,12 +37,8 @@ export function DataTable<TData, TValue>({
     data,
 }: DataTableProps<TData, TValue>) {
     const { selectedSong, selectSong } = useAppContext();
-    const {
-        isEnableProblemModal,
-        openProblemModal,
-        isProblemModalOpen,
-        openEditModal,
-    } = useOpenContext();
+    const { isEnableLyricsModal, openLyricsModal, isLyricsModalOpen } =
+        useOpenContext();
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [selectedRow, setSelectedRow] = useState<string | null>(null);
@@ -51,7 +47,7 @@ export function DataTable<TData, TValue>({
         const data = row.getAllCells()[0].getContext().cell.row
             .original as Song;
         selectSong(data);
-        if (isEnableProblemModal && !isProblemModalOpen) openProblemModal();
+        if (isEnableLyricsModal && !isLyricsModalOpen) openLyricsModal();
     };
 
     const table = useReactTable({
@@ -72,14 +68,15 @@ export function DataTable<TData, TValue>({
         <div>
             <div className="flex items-center py-4">
                 <Input
-                    placeholder="Search by name..."
+                    placeholder="Search by title..."
                     value={
-                        (table.getColumn("name")?.getFilterValue() as string) ??
-                        ""
+                        (table
+                            .getColumn("title")
+                            ?.getFilterValue() as string) ?? ""
                     }
                     onChange={(event) =>
                         table
-                            .getColumn("name")
+                            .getColumn("title")
                             ?.setFilterValue(event.target.value)
                     }
                     className="z-10 max-w-sm border-transparent bg-gray-60060 text-white"
@@ -137,7 +134,7 @@ export function DataTable<TData, TValue>({
                                                     ? "text-green"
                                                     : "text-gray-text"
                                             );
-                                        } else if (id === "name") {
+                                        } else if (id === "title") {
                                             className = clsx(
                                                 data.id === selectedSong?.id
                                                     ? "text-green"
@@ -176,7 +173,7 @@ export function DataTable<TData, TValue>({
                                     <div className="flex h-36 w-20 items-center justify-center space-x-5">
                                         <div className="w-1/2">
                                             <MoreHorizontal
-                                                onClick={openEditModal}
+                                                onClick={openLyricsModal}
                                                 className={clsx(
                                                     "h-[50%] hover:scale-110 hover:cursor-pointer",
                                                     selectedRow === row.id

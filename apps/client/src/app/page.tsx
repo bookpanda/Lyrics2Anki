@@ -1,12 +1,6 @@
 "use client";
 
-import {
-    EditModal,
-    Footer,
-    MainList,
-    MobileTabs,
-    ProblemModal,
-} from "@components/home";
+import { Footer, LyricsModal, MainList } from "@components/home";
 import { useMediaQuery } from "@mui/material";
 import { useAppContext } from "src/contexts";
 import { theme } from "src/theme";
@@ -16,15 +10,14 @@ const Home = () => {
     const breakLG = useMediaQuery(theme.breakpoints.up("lg"));
     return (
         <>
-            <EditModal />
             <div className="hidden h-screen w-full px-4 pt-8 xl:block">
                 <div className="flex h-[90%] space-x-2">
                     <MainList />
-                    <ProblemModal />
+                    <LyricsModal />
                 </div>
                 <Footer />
             </div>
-            <MobileTabs />
+            {/* <MobileTabs /> */}
 
             {/* <ThemeProvider theme={theme}>
                 <div className="theme relative z-10 min-h-[100vh] w-full overflow-x-hidden bg-primary.dark">

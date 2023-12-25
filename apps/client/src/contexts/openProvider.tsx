@@ -4,37 +4,27 @@ import { PropsWithChildren, useState } from "react";
 import { OpenContext } from "./openContext";
 
 export const OpenContextProvider = ({ children }: PropsWithChildren) => {
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [isProblemModalOpen, setIsProblemModalOpen] = useState(false);
-    const [isEnableProblemModal, setIsEnableProblemModal] = useState(true);
+    const [isLyricsModalOpen, setIsLyricsModalOpen] = useState(false);
+    const [isEnableLyricsModal, setIsEnableLyricsModal] = useState(true);
 
-    const openEditModal = () => {
-        setIsEditModalOpen(true);
+    const openLyricsModal = () => {
+        console.log("openLyricsModal");
+        setIsLyricsModalOpen(true);
+        setIsEnableLyricsModal(true);
     };
-    const closeEditModal = () => {
-        setIsEditModalOpen(false);
-    };
-    const openProblemModal = () => {
-        closeEditModal();
-        setIsProblemModalOpen(true);
-        setIsEnableProblemModal(true);
-    };
-    const closeProblemModal = () => {
-        setIsProblemModalOpen(false);
-        setIsEnableProblemModal(false);
+    const closeLyricsModal = () => {
+        setIsLyricsModalOpen(false);
+        setIsEnableLyricsModal(false);
     };
 
     return (
         <OpenContext.Provider
             value={{
-                isEditModalOpen,
-                openEditModal,
-                closeEditModal,
-                isProblemModalOpen,
-                openProblemModal,
-                closeProblemModal,
-                isEnableProblemModal,
-                setIsEnableProblemModal,
+                isLyricsModalOpen,
+                openLyricsModal,
+                closeLyricsModal,
+                isEnableLyricsModal,
+                setIsEnableLyricsModal,
             }}
         >
             {children}

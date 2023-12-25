@@ -1,7 +1,7 @@
 import { SelectedSong } from "@/types/types";
 import Image from "next/image";
 import { FC, useState } from "react";
-import { ToggleProblemModal } from "./ToggleProblemModal";
+import { ToggleLyricsModal } from "./ToggleLyricsModal";
 
 interface FooterImageProps {
     song: SelectedSong;
@@ -20,7 +20,7 @@ export const FooterImage: FC<FooterImageProps> = ({ song }) => {
                 setIsVisible(false);
             }}
         >
-            {isVisbible && <ToggleProblemModal />}
+            {isVisbible && <ToggleLyricsModal />}
             {song && (
                 <Image
                     src={song.albumArt}
@@ -28,7 +28,7 @@ export const FooterImage: FC<FooterImageProps> = ({ song }) => {
                     height={60}
                     style={{ objectFit: "cover" }}
                     className="rounded-md"
-                    alt="current_problem"
+                    alt="current_lyrics"
                     unoptimized
                 />
             )}
