@@ -8,14 +8,16 @@ export const Header = () => {
     const { selectedSong } = useAppContext();
     const c = selectedSong;
 
+    console.log(`using bg color: ${c ? c.color.bg : nullColor}`);
+
     return (
         <div className="w-full">
             <div
                 className="flex flex-col justify-between px-6 pb-5 pt-4"
                 style={{
                     backgroundImage: `linear-gradient(to top right, ${
-                        c ? c.color : nullColor
-                    }40, ${c ? c.color : nullColor})`,
+                        c ? c.color.bg : nullColor
+                    }40, ${c ? c.color.bg : nullColor})`,
                 }}
             >
                 <div className="flex items-center space-x-8">

@@ -24,8 +24,8 @@ export const MainList = () => {
                 className="absolute h-2/3 w-full"
                 style={{
                     backgroundImage: `linear-gradient(to bottom, ${
-                        c ? c.color : nullColor
-                    }, ${c ? c.color : nullColor}00)`,
+                        c ? c.color.bg : nullColor
+                    }, ${c ? c.color.bg : nullColor}00)`,
                 }}
             />
             <Header />

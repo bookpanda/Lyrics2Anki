@@ -36,12 +36,12 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     const selectSong = async (song: Song) => {
         setAlert(null);
         const lyrics = await fetchLyrics(song.id);
+        const colors = await getSongColor(song.albumArt);
         const newSong: SelectedSong = {
             ...song,
             lyrics,
-            color: { bg: "", isDark: false },
+            color: colors,
         };
-        getSongColor(newSong);
         setSelectedSong(newSong);
     };
 
