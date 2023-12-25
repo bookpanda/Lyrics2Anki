@@ -25,6 +25,8 @@ export const LyricsModal = () => {
                         <Image
                             src={selectedSong.albumArt}
                             alt="Lyrics"
+                            width={200}
+                            height={200}
                             style={{ width: "100%", height: "100%" }}
                             className="rounded-md"
                             unoptimized

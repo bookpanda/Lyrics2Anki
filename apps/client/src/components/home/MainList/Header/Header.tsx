@@ -8,8 +8,6 @@ export const Header = () => {
     const { selectedSong } = useAppContext();
     const c = selectedSong;
 
-    console.log(`using bg color: ${c ? c.color.bg : nullColor}`);
-
     return (
         <div className="w-full">
             <div

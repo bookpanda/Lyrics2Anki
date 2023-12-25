@@ -8,7 +8,6 @@ export const OpenContextProvider = ({ children }: PropsWithChildren) => {
     const [isEnableLyricsModal, setIsEnableLyricsModal] = useState(true);
 
     const openLyricsModal = () => {
-        console.log("openLyricsModal");
         setIsLyricsModalOpen(true);
         setIsEnableLyricsModal(true);
     };
