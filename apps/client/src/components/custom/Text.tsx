@@ -3,7 +3,7 @@ import { FC, PropsWithChildren } from "react";
 
 interface TextProps extends PropsWithChildren {
     className?: string;
-    variant: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p1" | "p2" | "p3";
+    variant: "h1" | "h2" | "h3" | "h4" | "h5" | "p1" | "p2" | "p3";
 }
 
 export const Text: FC<TextProps> = ({ className, children, variant }) => {

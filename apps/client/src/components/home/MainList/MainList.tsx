@@ -3,7 +3,7 @@
 import { nullColor } from "@/constants/nullColor";
 import { useAppContext, useOpenContext } from "@/contexts";
 import clsx from "clsx";
-import { SearchBar } from "../SearchBar";
+import { SearchBar } from "../SearchBar/SearchBar";
 import { columns } from "./DataTable/columns";
 import { DataTable } from "./DataTable/DataTable";
 import { Header } from "./Header/Header";

@@ -1,8 +1,11 @@
-import { Alert, TextField, Typography, useMediaQuery } from "@mui/material";
-import clsx from "clsx";
+import { Text } from "@components/custom";
+import { Button } from "@components/ui/button";
+import { Input } from "@components/ui/input";
+import { useMediaQuery } from "@mui/material";
 import { FC } from "react";
 import { useAppContext } from "src/contexts";
 import { theme } from "src/theme";
+import { SpotifyEmbed } from "../SpotifyEmbed/SpotifyEmbed";
 
 export const SearchBar: FC = () => {
     const {
@@ -12,48 +15,36 @@ export const SearchBar: FC = () => {
         searchTrack,
         searchArtist,
         setSearchArtist,
+        selectedSong,
     } = useAppContext();
     const breakMD = useMediaQuery(theme.breakpoints.up("md"));
     return (
-        <div className="w-full">
-            <div
-                className={clsx(
-                    "flex w-full",
-                    breakMD
-                        ? "flex-row space-x-8"
-                        : "flex-col items-center space-y-4"
-                )}
-            >
-                <TextField
-                    sx={{ width: breakMD ? "30%" : "100%" }}
-                    placeholder="Track Name"
-                    onChange={(e) => setSearchTrack(e.target.value)}
+        <div className="flex mt-6 px-4">
+            <div className="flex-col w-1/2 space-y-4 z-10">
+                <Text variant="p1" className="text-gray-text">
+                    Search for a song and artist
+                </Text>
+                <Input
+                    placeholder="Track name..."
                     value={searchTrack}
+                    onChange={(e) => setSearchTrack(e.target.value)}
+                    className="max-w-sm border-transparent bg-gray-60060 text-white"
                 />
-                <TextField
-                    sx={{ width: breakMD ? "30%" : "100%" }}
-                    placeholder="Artist Name"
+                <Input
+                    placeholder="Artist..."
+                    value={searchTrack}
                     onChange={(e) => setSearchArtist(e.target.value)}
-                    value={searchArtist}
+                    className="max-w-sm border-transparent bg-gray-60060 text-white"
                 />
-            </div>
-            <div className="mt-4 flex items-center space-x-4">
-                <button
-                    className="rounded-md bg-secondary.dark p-2 px-4 font-[Gotham] font-semibold transition hover:bg-[#0fa243]"
+                <Button
+                    className="z-10 text-black"
+                    variant="green"
                     onClick={() => getAnkiCards()}
                 >
                     Get AnkiCards
-                </button>
-                {alert && <Alert severity="error">{alert}</Alert>}
+                </Button>
             </div>
-            <Typography
-                variant="subtitle2"
-                color="secondary.light"
-                fontWeight={300}
-                marginTop={2}
-            >
-                Anki Cards can only be properly generated on Desktop
-            </Typography>
+            {selectedSong && <SpotifyEmbed />}
         </div>
     );
 };

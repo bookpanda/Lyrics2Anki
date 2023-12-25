@@ -11,7 +11,7 @@ export const SpotifyEmbed: FC = () => {
     return (
         <div
             className={clsx(
-                "flex h-full items-center",
+                "flex h-full items-center z-10",
                 breakMD ? "w-1/2" : breakSM ? "w-2/3" : "w-full"
             )}
         >
