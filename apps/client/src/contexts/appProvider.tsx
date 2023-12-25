@@ -2,6 +2,7 @@
 
 import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 
+import { useToast } from "@components/ui/use-toast";
 import { fetchLyrics } from "src/contexts/fetchLyrics";
 import { fetchSongs } from "src/contexts/fetchSongs";
 import { SearchCache, SelectedSong, Song, Songs, Vocab } from "src/types/types";
@@ -11,7 +12,7 @@ import {
     fetchTokenizedWords,
 } from "../apis/tokenizer";
 import { fetchTranslation } from "../apis/translateApi";
-import { alert, AppContext } from "./appContext";
+import { AppContext } from "./appContext";
 import { fetchAnkiCards } from "./fetchAnkiCards";
 import { getSongColor } from "./getSongColor";
 
@@ -21,10 +22,9 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     const [songs, setSongs] = useState<Songs>([]);
     const [selectedSong, setSelectedSong] = useState<SelectedSong>(null);
     const [vocab, setVocab] = useState<Vocab>([]);
-    const [alert, setAlert] = useState<alert>(null);
+    const { toast } = useToast();
 
     const getSongs = useCallback(async () => {
-        setAlert(null);
         const newSongs: Songs = await fetchSongs(searchTrack, searchArtist);
         setSongs(() => newSongs);
     }, [searchArtist, searchTrack]);
@@ -41,7 +41,6 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     }, [searchArtist, searchTrack, getSongs]);
 
     const selectSong = async (song: Song) => {
-        setAlert(null);
         const lyrics = await fetchLyrics(song.id);
         const colors = await getSongColor(song.albumArt);
         const newSong: SelectedSong = {
@@ -67,13 +66,19 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
 
     const getAnkiCards = async () => {
         if (!selectedSong) {
-            setAlert("Please select a song first");
+            toast({
+                title: "Error",
+                description: "Please select a song first",
+            });
             return;
         }
         const cleanedLyrics = cleanLyrics(selectedSong.lyrics);
         const tokens: string[] = await fetchTokenizedWords(cleanedLyrics);
         if (tokens.length === 0) {
-            setAlert("Song has no Japanese characters");
+            toast({
+                title: "Error",
+                description: "Song has no Japanese characters",
+            });
             return;
         }
         const fg = await addFurigana(tokens);
@@ -101,7 +106,6 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
                 selectSong,
                 getAnkiCards,
                 vocab,
-                alert,
             }}
         >
             {children}

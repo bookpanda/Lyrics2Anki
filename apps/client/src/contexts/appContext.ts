@@ -14,7 +14,6 @@ interface IAppContext {
     selectSong: (song: Song) => void;
     getAnkiCards: () => void;
     vocab: Vocab;
-    alert: alert;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -28,7 +27,6 @@ export const AppContext = createContext<IAppContext>({
     selectSong: () => null,
     getAnkiCards: () => null,
     vocab: [],
-    alert: null,
 });
 
 export const useAppContext = () => {

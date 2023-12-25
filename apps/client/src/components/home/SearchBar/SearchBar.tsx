@@ -9,7 +9,6 @@ import { SpotifyEmbed } from "../SpotifyEmbed/SpotifyEmbed";
 
 export const SearchBar: FC = () => {
     const {
-        alert,
         getAnkiCards,
         setSearchTrack,
         searchTrack,
