@@ -32,7 +32,7 @@ export const SearchBar: FC = () => {
                 />
                 <Input
                     placeholder="Artist..."
-                    value={searchTrack}
+                    value={searchArtist}
                     onChange={(e) => setSearchArtist(e.target.value)}
                     className="max-w-sm border-transparent bg-gray-60060 text-white"
                 />
