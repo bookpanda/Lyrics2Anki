@@ -90,6 +90,10 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
             })
         );
 
+        toast({
+            title: "Info",
+            description: "Making Anki cards...",
+        });
         await fetchAnkiCards(selectedSong.title ?? "No name", vocab);
     };
 
