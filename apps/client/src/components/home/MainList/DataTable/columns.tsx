@@ -37,6 +37,7 @@ export const columns: ColumnDef<Song>[] = [
                     <Image
                         src={row.original.albumArt}
                         width={45}
+                        height={45}
                         style={{ objectFit: "cover" }}
                         alt={row.original.album}
                         unoptimized

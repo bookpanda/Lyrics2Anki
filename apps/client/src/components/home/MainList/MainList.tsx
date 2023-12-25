@@ -3,6 +3,7 @@
 import { nullColor } from "@/constants/nullColor";
 import { useAppContext, useOpenContext } from "@/contexts";
 import clsx from "clsx";
+import { SearchBar } from "../SearchBar";
 import { columns } from "./DataTable/columns";
 import { DataTable } from "./DataTable/DataTable";
 import { Header } from "./Header/Header";
@@ -28,6 +29,7 @@ export const MainList = () => {
                 }}
             />
             <Header />
+            <SearchBar />
             <div className="p-4">
                 {songs && <DataTable columns={columns} data={songs} />}
             </div>

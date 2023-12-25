@@ -3,7 +3,6 @@
 import { nullColor } from "@/constants/nullColor";
 import { useAppContext } from "@/contexts";
 import { AppIcon, Text } from "@components/custom";
-import { Skeleton } from "@components/ui/skeleton";
 
 export const Header = () => {
     const { selectedSong } = useAppContext();
@@ -21,28 +20,39 @@ export const Header = () => {
             >
                 <div className="flex items-center space-x-8">
                     {c ? (
-                        <AppIcon className="drop-shadow-xl" width={180} />
+                        <AppIcon
+                            src={c.albumArt}
+                            className="drop-shadow-xl"
+                            width={180}
+                        />
                     ) : (
-                        <Skeleton className="h-[180px] w-[180px]" />
+                        <AppIcon className="drop-shadow-xl" width={180} />
                     )}
 
                     <div className="z-10">
                         {c ? (
+                            <>
+                                <Text
+                                    variant="h1"
+                                    className="text-white drop-shadow-2xl"
+                                >
+                                    {c.title}
+                                </Text>
+                                <Text
+                                    variant="p1"
+                                    className="ml-1 mt-1 text-white drop-shadow-2xl"
+                                >
+                                    {c.artists}
+                                </Text>
+                            </>
+                        ) : (
                             <Text
                                 variant="h1"
                                 className="text-white drop-shadow-2xl"
                             >
-                                {c.title}
+                                Lyrics2Anki
                             </Text>
-                        ) : (
-                            <Skeleton className="h-16 w-64" />
                         )}
-                        <Text
-                            variant="p1"
-                            className="ml-1 mt-1 text-white drop-shadow-2xl"
-                        >
-                            Lyrics2Anki
-                        </Text>
                     </div>
                 </div>
             </div>

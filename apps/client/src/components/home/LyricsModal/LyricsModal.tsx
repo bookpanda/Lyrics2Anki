@@ -23,6 +23,7 @@ export const EditModal = () => {
                         <Image
                             src={selectedSong.albumArt}
                             width={200}
+                            height={200}
                             style={{ objectFit: "cover" }}
                             alt={c.album}
                             className="rounded-lg"
@@ -48,6 +49,8 @@ export const EditModal = () => {
                     <div className="mb-4 flex flex-col items-center space-y-3 xl:hidden">
                         <Image
                             src={selectedSong.albumArt}
+                            width={200}
+                            height={200}
                             style={{ objectFit: "cover", width: "80%" }}
                             alt={c.album}
                             className="rounded-lg"
