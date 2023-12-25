@@ -24,7 +24,6 @@ import { useAppContext, useOpenContext } from "@/contexts";
 import { Song } from "@/types/types";
 import { Input } from "@components/ui/input";
 import clsx from "clsx";
-import { MoreHorizontal } from "lucide-react";
 import { useState } from "react";
 
 interface DataTableProps<TData, TValue> {
@@ -170,19 +169,6 @@ export function DataTable<TData, TValue>({
                                             </TableCell>
                                         );
                                     })}
-                                    <div className="flex h-36 w-20 items-center justify-center space-x-5">
-                                        <div className="w-1/2">
-                                            <MoreHorizontal
-                                                onClick={openLyricsModal}
-                                                className={clsx(
-                                                    "h-[50%] hover:scale-110 hover:cursor-pointer",
-                                                    selectedRow === row.id
-                                                        ? "text-white"
-                                                        : "text-transparent"
-                                                )}
-                                            />
-                                        </div>
-                                    </div>
                                 </TableRow>
                             );
                         })

@@ -3,6 +3,7 @@
 import { Text } from "@/components/custom";
 import { Song } from "@/types/types";
 import { ColumnDef } from "@tanstack/react-table";
+import { Clock3 } from "lucide-react";
 import Image from "next/image";
 import { ColHeader } from "./ColHeader";
 
@@ -55,10 +56,27 @@ export const columns: ColumnDef<Song>[] = [
         },
     },
     {
+        accessorKey: "album",
+        header: ({ column }) => (
+            <ColHeader column={column} className="w-16 space-x-1">
+                <p className="font-light text-gray-text">Album</p>
+            </ColHeader>
+        ),
+        cell: ({ row }) => {
+            return (
+                <Text variant="p1" className="text-gray-text">
+                    {row.original.album}
+                </Text>
+            );
+        },
+    },
+    {
         accessorKey: "duration",
         header: ({ column }) => (
             <ColHeader column={column} className="w-16 space-x-1">
-                <p className="font-light text-gray-text">Duration</p>
+                <p className="font-light text-gray-text">
+                    <Clock3 className="h-5 w-5 text-gray-text" />
+                </p>
             </ColHeader>
         ),
         cell: ({ row }) => {
