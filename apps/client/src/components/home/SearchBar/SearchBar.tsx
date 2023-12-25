@@ -1,10 +1,8 @@
 import { Text } from "@components/custom";
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
-import { useMediaQuery } from "@mui/material";
 import { FC } from "react";
 import { useAppContext } from "src/contexts";
-import { theme } from "src/theme";
 import { SpotifyEmbed } from "../SpotifyEmbed/SpotifyEmbed";
 
 export const SearchBar: FC = () => {
@@ -16,7 +14,6 @@ export const SearchBar: FC = () => {
         setSearchArtist,
         selectedSong,
     } = useAppContext();
-    const breakMD = useMediaQuery(theme.breakpoints.up("md"));
     return (
         <div className="flex mt-6 px-4">
             <div className="flex-col w-1/2 space-y-4 z-10">
