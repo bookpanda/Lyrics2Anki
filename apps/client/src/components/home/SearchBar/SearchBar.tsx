@@ -40,7 +40,9 @@ export const SearchBar: FC = () => {
                     Get AnkiCards
                 </Button>
             </div>
-            {selectedSong && <SpotifyEmbed />}
+            <div className="hidden xl:block z-10 w-full mr-8">
+                {selectedSong && <SpotifyEmbed />}
+            </div>
         </div>
     );
 };

@@ -51,7 +51,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
                         <div className="box-border h-screen w-screen bg-gray-800">
                             {children}
                             <Analytics />
-                            {/* <Toaster /> */}
                         </div>
                     </body>
                 </html>
