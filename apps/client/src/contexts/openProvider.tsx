@@ -6,6 +6,7 @@ import { OpenContext } from "./openContext";
 export const OpenContextProvider = ({ children }: PropsWithChildren) => {
     const [isLyricsPanelOpen, setIsLyricsPanelOpen] = useState(false);
     const [isEnableLyricsPanel, setIsEnableLyricsPanel] = useState(true);
+    const [isLyricsScreenOpen, setIsLyricsScreenOpen] = useState(false);
 
     const openLyricsPanel = () => {
         setIsLyricsPanelOpen(true);
@@ -14,6 +15,12 @@ export const OpenContextProvider = ({ children }: PropsWithChildren) => {
     const closeLyricsPanel = () => {
         setIsLyricsPanelOpen(false);
         setIsEnableLyricsPanel(false);
+    };
+    const openLyricsScreen = () => {
+        setIsLyricsScreenOpen(true);
+    };
+    const closeLyricsScreen = () => {
+        setIsLyricsScreenOpen(false);
     };
 
     return (
@@ -24,6 +31,8 @@ export const OpenContextProvider = ({ children }: PropsWithChildren) => {
                 closeLyricsPanel,
                 isEnableLyricsPanel,
                 setIsEnableLyricsPanel,
+                isLyricsScreenOpen,
+                openLyricsScreen,
             }}
         >
             {children}
