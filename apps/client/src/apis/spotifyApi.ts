@@ -17,7 +17,6 @@ export type SpotifySearch = {
 };
 
 export const fetchSpotifySearch = async (title: string, artist: string) => {
-    console.log(`spotify client id: ${process.env.SPOTIFY_CLIENT_ID}`);
     if (!title && !artist) return null;
     if (!title) title = "-";
     if (!artist) artist = "-";
