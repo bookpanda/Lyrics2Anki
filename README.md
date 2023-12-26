@@ -29,7 +29,7 @@ AWS Lambda, fugashi (Japanese tokenizer), genanki (Anki Card generator)
 ### Installation
 
 1. Clone this repo
-2. Copy `.env.template` in `apps/client` and paste it in the same directory as `.env` and fill in the values. View the [Environment Variables](##environment-variables) section for more information.
+2. Copy `.env.template` in `apps/client` and paste it in the same directory as `.env.local` and fill in the values. View the [Environment Variables](##environment-variables) section for more information.
 3. Run this to download all the dependencies.
 
 ```bash
