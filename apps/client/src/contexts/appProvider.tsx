@@ -5,7 +5,7 @@ import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 import { useToast } from "@components/ui/use-toast";
 import { fetchLyrics } from "src/contexts/fetchLyrics";
 import { fetchSongs } from "src/contexts/fetchSongs";
-import { SearchCache, SelectedSong, Song, Songs, Vocab } from "src/types/types";
+import { SearchCache, SelectedSong, Song, Songs } from "src/types/types";
 import {
     addFurigana,
     cleanLyrics,
@@ -21,7 +21,6 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     const [searchArtist, setSearchArtist] = useState("");
     const [songs, setSongs] = useState<Songs>([]);
     const [selectedSong, setSelectedSong] = useState<SelectedSong>(null);
-    const [vocab, setVocab] = useState<Vocab>([]);
     const { toast } = useToast();
 
     const getSongs = useCallback(async () => {
@@ -84,11 +83,9 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         const fg = await addFurigana(tokens);
         const meaning = await fetchTranslation(tokens);
 
-        setVocab(() =>
-            tokens.map((token, idx) => {
-                return { token, furigana: fg[idx], translation: meaning[idx] };
-            })
-        );
+        const vocab = tokens.map((token, idx) => {
+            return { token, furigana: fg[idx], translation: meaning[idx] };
+        });
 
         toast({
             title: "Info",
@@ -109,7 +106,6 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
                 selectedSong,
                 selectSong,
                 getAnkiCards,
-                vocab,
             }}
         >
             {children}
