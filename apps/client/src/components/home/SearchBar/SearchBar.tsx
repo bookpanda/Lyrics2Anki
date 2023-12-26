@@ -16,7 +16,7 @@ export const SearchBar: FC = () => {
     } = useAppContext();
     return (
         <div className="flex mt-6 px-4">
-            <div className="flex-col w-1/2 space-y-4 z-10">
+            <div className="flex-col md:w-1/2 w-full space-y-4 z-10">
                 <Text variant="p1" className="text-gray-text">
                     Search for a song and artist
                 </Text>

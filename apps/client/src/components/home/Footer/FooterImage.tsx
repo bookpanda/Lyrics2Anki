@@ -1,7 +1,7 @@
 import { SelectedSong } from "@/types/types";
 import Image from "next/image";
 import { FC, useState } from "react";
-import { ToggleLyricsModal } from "./ToggleLyricsModal";
+import { ToggleLyricsPanel } from "./ToggleLyricsPanel";
 
 interface FooterImageProps {
     song: SelectedSong;
@@ -20,7 +20,7 @@ export const FooterImage: FC<FooterImageProps> = ({ song }) => {
                 setIsVisible(false);
             }}
         >
-            {isVisbible && <ToggleLyricsModal />}
+            {isVisbible && <ToggleLyricsPanel />}
             {song && (
                 <Image
                     src={song.albumArt}

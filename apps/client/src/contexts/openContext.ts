@@ -1,19 +1,19 @@
 import { createContext, Dispatch, SetStateAction, useContext } from "react";
 
 export interface OpenContextProps {
-    isLyricsModalOpen: boolean;
-    openLyricsModal: () => void;
-    closeLyricsModal: () => void;
-    isEnableLyricsModal: boolean;
-    setIsEnableLyricsModal: Dispatch<SetStateAction<boolean>>;
+    isLyricsPanelOpen: boolean;
+    openLyricsPanel: () => void;
+    closeLyricsPanel: () => void;
+    isEnableLyricsPanel: boolean;
+    setIsEnableLyricsPanel: Dispatch<SetStateAction<boolean>>;
 }
 
 export const OpenContext = createContext<OpenContextProps>({
-    isLyricsModalOpen: false,
-    openLyricsModal: () => {},
-    closeLyricsModal: () => {},
-    isEnableLyricsModal: true,
-    setIsEnableLyricsModal: () => {},
+    isLyricsPanelOpen: false,
+    openLyricsPanel: () => {},
+    closeLyricsPanel: () => {},
+    isEnableLyricsPanel: true,
+    setIsEnableLyricsPanel: () => {},
 });
 
 export const useOpenContext = () => useContext(OpenContext);

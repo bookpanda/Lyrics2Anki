@@ -5,7 +5,7 @@ import { nullColor } from "@/constants/nullColor";
 import { useAppContext } from "@/contexts";
 import { Drawer, DrawerTrigger } from "@components/ui/drawer";
 import clsx from "clsx";
-import { DrawerLyrics } from "./DrawerLyrics";
+import { DrawerModal } from "./DrawerModal";
 import { FooterImage } from "./FooterImage";
 
 export const Footer = () => {
@@ -64,7 +64,7 @@ export const Footer = () => {
                             </div>
                         </div>
                     </DrawerTrigger>
-                    <DrawerLyrics />
+                    <DrawerModal />
                 </Drawer>
             )}
         </>

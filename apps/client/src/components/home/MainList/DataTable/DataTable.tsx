@@ -36,7 +36,7 @@ export function DataTable<TData, TValue>({
     data,
 }: DataTableProps<TData, TValue>) {
     const { selectedSong, selectSong } = useAppContext();
-    const { isEnableLyricsModal, openLyricsModal, isLyricsModalOpen } =
+    const { isEnableLyricsPanel, openLyricsPanel, isLyricsPanelOpen } =
         useOpenContext();
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -46,7 +46,7 @@ export function DataTable<TData, TValue>({
         const data = row.getAllCells()[0].getContext().cell.row
             .original as Song;
         selectSong(data);
-        if (isEnableLyricsModal && !isLyricsModalOpen) openLyricsModal();
+        if (isEnableLyricsPanel && !isLyricsPanelOpen) openLyricsPanel();
     };
 
     const table = useReactTable({

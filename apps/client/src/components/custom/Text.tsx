@@ -34,6 +34,11 @@ export const Text: FC<TextProps> = ({ className, children, variant }) => {
                     {children}
                 </h2>
             )}
+            {variant === "h4" && (
+                <h2 className={clsx("text-lg md:text-2xl", className)}>
+                    {children}
+                </h2>
+            )}
             {variant === "h5" && (
                 <h2 className={clsx("text-md font-bold md:text-xl", className)}>
                     {children}
