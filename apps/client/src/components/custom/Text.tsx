@@ -12,7 +12,7 @@ export const Text: FC<TextProps> = ({ className, children, variant }) => {
             {variant === "h1" && (
                 <h1
                     className={clsx(
-                        "text-4xl font-bold md:text-6xl",
+                        "text-2xl font-bold md:text-6xl",
                         className
                     )}
                 >
@@ -22,7 +22,7 @@ export const Text: FC<TextProps> = ({ className, children, variant }) => {
             {variant === "h2" && (
                 <h2
                     className={clsx(
-                        "text-3xl font-bold md:text-5xl",
+                        "text-2xl font-bold md:text-4xl",
                         className
                     )}
                 >

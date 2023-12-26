@@ -44,7 +44,7 @@ export const columns: ColumnDef<Song>[] = [
                         unoptimized
                     />
                     <div>
-                        <Text variant="p2">
+                        <Text variant="p2" className="truncate">
                             <b>{row.original.title}</b>
                         </Text>
                         <Text variant="p3" className="text-gray-text">
@@ -64,7 +64,7 @@ export const columns: ColumnDef<Song>[] = [
         ),
         cell: ({ row }) => {
             return (
-                <Text variant="p1" className="text-gray-text">
+                <Text variant="p1" className="text-gray-text truncate">
                     {row.original.album}
                 </Text>
             );
