@@ -47,7 +47,7 @@ const base64ToFile = (
     mimeType: string
 ) => {
     if (!base64String) return;
-    const binaryString = Buffer.from(base64String, "base64").toString();
+    const binaryString = atob(base64String);
     const arrayBuffer = new ArrayBuffer(binaryString.length);
     const uint8Array = new Uint8Array(arrayBuffer);
     for (let i = 0; i < binaryString.length; i++) {
