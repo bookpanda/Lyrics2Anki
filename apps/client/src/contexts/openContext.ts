@@ -6,8 +6,6 @@ export interface OpenContextProps {
     closeLyricsPanel: () => void;
     isEnableLyricsPanel: boolean;
     setIsEnableLyricsPanel: Dispatch<SetStateAction<boolean>>;
-    isLyricsScreenOpen: boolean;
-    openLyricsScreen: () => void;
 }
 
 export const OpenContext = createContext<OpenContextProps>({
@@ -16,8 +14,6 @@ export const OpenContext = createContext<OpenContextProps>({
     closeLyricsPanel: () => {},
     isEnableLyricsPanel: true,
     setIsEnableLyricsPanel: () => {},
-    isLyricsScreenOpen: false,
-    openLyricsScreen: () => {},
 });
 
 export const useOpenContext = () => useContext(OpenContext);
