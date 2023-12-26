@@ -45,40 +45,40 @@ pnpm install
 
 ## Environment Variables
 
-#### NEXT_PUBLIC_RAPID_APP_KEY
+#### RAPID_APP_KEY
 
 Make a RapidAPI app with this [API](https://rapidapi.com/Glavier/api/spotify23/) and use the key here.
 
-#### NEXT_PUBLIC_AZURE_TRANSLATE_API_KEY
+#### AZURE_TRANSLATE_API_KEY
 
 Make Azure account and register for the translation API. Use the key here.
 
-#### NEXT_PUBLIC_SERVER_URL
+#### SERVER_URL
 
-#### NEXT_PUBLIC_SPOTIFY_CLIENT_ID
+#### SPOTIFY_CLIENT_ID
 
 Create a Spotify API app and use the client id here.
 
-#### NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET
+#### SPOTIFY_CLIENT_SECRET
 
 Create a Spotify API app and use the client secret here.
 
-#### NEXT_PUBLIC_LAMBDA_ANKI_URL
+#### LAMBDA_ANKI_URL
 
 URL of Lambda function
 
-#### NEXT_PUBLIC_AWS_REGION
+#### AWS_REGION
 
 Region of Lambda function
 
-#### NEXT_PUBLIC_AWS_ACCESS_KEY_ID
+#### AWS_ACCESS_KEY_ID
 
 Access key id of AWS account
 
-#### NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY
+#### AWS_SECRET_ACCESS_KEY
 
 Secret access key of AWS account
 
-#### NEXT_PUBLIC_AWS_FUNCTION_NAME
+#### AWS_FUNCTION_NAME
 
 Name of Lambda function

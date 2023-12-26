@@ -3,7 +3,7 @@ import { v4 } from "uuid";
 
 type translationType = { translations: { text: string; to: string }[] }[];
 
-const key = process.env.NEXT_PUBLIC_AZURE_TRANSLATE_API_KEY as string;
+const key = process.env.AZURE_TRANSLATE_API_KEY as string;
 const endpoint = "https://api.cognitive.microsofttranslator.com";
 const location = "southeastasia";
 

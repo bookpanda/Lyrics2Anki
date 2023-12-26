@@ -17,6 +17,7 @@ export type SpotifySearch = {
 };
 
 export const fetchSpotifySearch = async (title: string, artist: string) => {
+    console.log(`spotify client id: ${process.env.SPOTIFY_CLIENT_ID}`);
     if (!title && !artist) return null;
     if (!title) title = "-";
     if (!artist) artist = "-";
@@ -49,9 +50,9 @@ export const createAccessToken = async () => {
             Authorization:
                 "Basic " +
                 Buffer.from(
-                    process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID +
+                    process.env.SPOTIFY_CLIENT_ID +
                         ":" +
-                        process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET
+                        process.env.SPOTIFY_CLIENT_SECRET
                 ).toString("base64"),
         },
         body: "grant_type=client_credentials",

@@ -7,7 +7,7 @@ export const fetchLyrics = async (id: string): Promise<Lyrics> => {
     const options = {
         method: "GET",
         headers: {
-            "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_APP_KEY as string,
+            "X-RapidAPI-Key": process.env.RAPID_APP_KEY as string,
             "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
         },
     };

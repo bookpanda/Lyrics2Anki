@@ -111,6 +111,9 @@ importers:
       clsx:
         specifier: ^1.2.1
         version: 1.2.1
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
       fast-average-color:
         specifier: ^9.4.0
         version: 9.4.0
@@ -2301,6 +2304,11 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
+    engines: {node: '>=12'}
+    dev: false
 
   /doublearray@0.0.2:
     resolution: {integrity: sha512-aw55FtZzT6AmiamEj2kvmR6BuFqvYgKZUkfQ7teqVRNqD5UE0rw8IeW/3gieHNKQ5sPuDKlljWEn4bzv5+1bHw==}
