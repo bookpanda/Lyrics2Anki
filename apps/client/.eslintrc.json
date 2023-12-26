@@ -21,6 +21,7 @@
         "sourceType": "module"
     },
     "plugins": ["react", "@typescript-eslint", "react-hooks"],
+    "ignorePatterns": ["src/components/ui/**"],
     "rules": {
         "react/react-in-jsx-scope": "off",
         "react/jsx-uses-react": "off",
