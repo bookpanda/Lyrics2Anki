@@ -32,10 +32,14 @@ export const cleanLyrics = (input: string[]) => {
 
 export const fetchTokenizedWords = async (cleanedLyrics: string[]) => {
     const url = process.env.SERVER_URL as string;
+    const lyrics = { lyrics: cleanedLyrics };
     const options = {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cleanedLyrics),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.SERVER_API_KEY}`,
+        },
+        lyrics: JSON.stringify(lyrics),
     };
     const data = await fetch(url, options)
         .then((res) => res.json())
