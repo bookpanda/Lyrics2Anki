@@ -8,6 +8,7 @@ module.exports = {
         RAPID_APP_KEY: process.env.RAPID_APP_KEY,
         AZURE_TRANSLATE_API_KEY: process.env.AZURE_TRANSLATE_API_KEY,
         SERVER_URL: process.env.SERVER_URL,
+        SERVER_API_KEY: process.env.SERVER_API_KEY,
         SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
         SPOTIFY_CLIENT_SECRET: process.env.SPOTIFY_CLIENT_SECRET,
         LAMBDA_ANKI_URL: process.env.LAMBDA_ANKI_URL,

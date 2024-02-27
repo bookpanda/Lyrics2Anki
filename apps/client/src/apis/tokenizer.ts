@@ -39,12 +39,13 @@ export const fetchTokenizedWords = async (cleanedLyrics: string[]) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${process.env.SERVER_API_KEY}`,
         },
-        lyrics: JSON.stringify(lyrics),
+        body: JSON.stringify(lyrics),
     };
     const data = await fetch(url, options)
         .then((res) => res.json())
         .catch((err) => console.error("error:" + err));
-    return data.content;
+
+    return data.tokens;
 };
 
 export type furiganaType = string[] | null;
