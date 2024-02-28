@@ -1,8 +1,10 @@
 import base64
+
 import genanki
 
-def lambda_handler(event, context): 
-    data = event['data']
+
+def lambda_handler(event, context):
+    data = event["data"]
     title = data["title"]
     vocab = data["vocab"]
 
@@ -49,14 +51,14 @@ def lambda_handler(event, context):
     genanki.Package(lyricsDeck).write_to_file("/tmp/output.apkg")
 
     try:
-        with open("/tmp/output.apkg", 'rb') as input_file:
+        with open("/tmp/output.apkg", "rb") as input_file:
             file_content = input_file.read()
 
             base64_content = base64.b64encode(file_content)
             return {
-                'statusCode': 200,
-                'body': base64_content.decode('utf-8'),
-                'isBase64Encoded': True
+                "statusCode": 200,
+                "body": base64_content.decode("utf-8"),
+                "isBase64Encoded": True,
             }
     except Exception as e:
         print(f"Error: {e}")
