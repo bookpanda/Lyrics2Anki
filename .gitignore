@@ -38,3 +38,4 @@ package
 package.zip
 deploy.txt
 .vercel
+.vscode

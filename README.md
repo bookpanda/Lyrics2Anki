@@ -45,6 +45,14 @@ pnpm install
 
 ## Environment Variables
 
+#### SPOTIFY_CLIENT_ID
+
+Create a Spotify API app and use the client id here.
+
+#### SPOTIFY_CLIENT_SECRET
+
+Create a Spotify API app and use the client secret here.
+
 #### RAPID_APP_KEY
 
 Make a RapidAPI app with this [API](https://rapidapi.com/Glavier/api/spotify23/) and use the key here.
@@ -53,15 +61,13 @@ Make a RapidAPI app with this [API](https://rapidapi.com/Glavier/api/spotify23/)
 
 Make Azure account and register for the translation API. Use the key here.
 
-#### SERVER_URL
+#### TOKENIZE_API_URL
 
-#### SPOTIFY_CLIENT_ID
+Deploy the [tokenizer API](https://github.com/bookpanda/lyrics2anki-tokenizer) and use its URL here.
 
-Create a Spotify API app and use the client id here.
+#### TOKENIZE_API_KEY
 
-#### SPOTIFY_CLIENT_SECRET
-
-Create a Spotify API app and use the client secret here.
+Use the key of the tokenizer API here (you decide the key yourself).
 
 #### LAMBDA_ANKI_URL
 
