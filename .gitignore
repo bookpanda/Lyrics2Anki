@@ -39,4 +39,8 @@ package.zip
 deploy.txt
 .vercel
 .vscode
+
 .terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup

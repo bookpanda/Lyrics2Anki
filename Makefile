@@ -6,3 +6,6 @@ package-anki:
 
 check-tf:
 	cd apps/serverless/anki && terraform fmt -check=true && terraform validate
+	
+deploy-tf:
+	make check-tf && cd apps/serverless/anki && terraform init && terraform apply
