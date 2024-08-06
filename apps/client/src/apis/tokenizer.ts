@@ -31,13 +31,13 @@ export const cleanLyrics = (input: string[]) => {
 };
 
 export const fetchTokenizedWords = async (cleanedLyrics: string[]) => {
-    const url = process.env.SERVER_URL as string;
+    const url = process.env.TOKENIZE_API_URL as string;
     const lyrics = { lyrics: cleanedLyrics };
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.SERVER_API_KEY}`,
+            Authorization: `Bearer ${process.env.TOKENIZE_API_KEY}`,
         },
         body: JSON.stringify(lyrics),
     };

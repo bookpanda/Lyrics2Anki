@@ -1,40 +1,10 @@
-from flask import Flask, request, Response, send_file
-from flask_cors import CORS, cross_origin
-from threading import Thread
-import json
+import base64
+
 import genanki
-from fugashi import Tagger
-
-app = Flask(__name__)
-cors = CORS(app)
-
-fukashitTagger = Tagger()
 
 
-@cross_origin()
-@app.route("/", methods=["POST"])
-def index():
-    lyrics = request.json
-    tokens = set()
-    for line in lyrics:
-        for word in fukashitTagger(line):
-            if word.feature[0] != "助詞":
-                tokens.add(word.surface)
-
-    token_list = [tk for tk in tokens]
-
-    data = {"content": token_list}
-    json_dump = json.dumps(data)
-    res = Response(json_dump)
-    res.headers["Content-Type"] = "application/json"
-    res.headers["Access-Control-Allow-Origin"] = "*"
-    res.headers["Access-Control-Allow-Credentials"] = True
-    return res
-
-
-@app.route("/anki", methods=["POST"])
-def anki():
-    data = request.json
+def lambda_handler(event, context):
+    data = event["data"]
     title = data["title"]
     vocab = data["vocab"]
 
@@ -78,21 +48,17 @@ def anki():
         print(v["token"], v["furigana"], v["translation"])
         lyricsDeck.add_note(note)
 
-    genanki.Package(lyricsDeck).write_to_file("output.apkg")
+    genanki.Package(lyricsDeck).write_to_file("/tmp/output.apkg")
 
     try:
-        return send_file("output.apkg")
+        with open("/tmp/output.apkg", "rb") as input_file:
+            file_content = input_file.read()
+
+            base64_content = base64.b64encode(file_content)
+            return {
+                "statusCode": 200,
+                "body": base64_content.decode("utf-8"),
+                "isBase64Encoded": True,
+            }
     except Exception as e:
-        return str(e)
-
-
-def run():
-    app.run(host="0.0.0.0", port=8080)
-
-
-def keep_alive():
-    server = Thread(target=run)
-    server.start()
-
-
-keep_alive()
+        print(f"Error: {e}")
